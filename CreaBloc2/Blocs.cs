@@ -1,80 +1,162 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CreaBloc2
 {
     //classe des composants du bloc
     class ElemBlocs
     {
-        private String id;
-        private String référence;
-        private String designation;
-        private String nomFichier;
-        private bool obsolète;
+        private string pathTemp = @"C:\Users\beaudonnelk\Documents\TempBloc\newBloc.xrb";
 
-        //constructeur
-        public ElemBlocs(string id, string référence, string repère, String nomFichier, bool obsolète )
+        public static int largeurBloc(String chemin)
         {
-            this.id = id;
-            this.référence = référence;
-            this.designation = repère;
-            this.nomFichier = nomFichier;
-            this.obsolète = obsolète;         
+            int largeur = 0;
+
+            FileStream fs = File.OpenRead(chemin);
+            StreamReader sr = null;
+
+            try
+            {
+                sr = new StreamReader(fs, System.Text.Encoding.Default);
+            }
+
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e);
+            
+            }
+
+
+            string ligne;
+
+            int i = 0;
+
+            try
+            {
+
+                while ((ligne = sr.ReadLine()) != null)
+                {
+                    if (ligne.StartsWith(@"¤#Contour¤"))
+                    {
+                        i = 1;
+                    }
+                    else if (i == 1)
+                    {
+
+                        if (!ligne.StartsWith(@"¤#"))
+                        {
+                            string[] split = ligne.Split('·');
+                            int coordX1 = int.Parse(split[0]);
+                            int coordX2 = int.Parse(split[2]);
+
+                            int j = 0;
+                            if (coordX1 > coordX2)
+                            {
+                                j = coordX1;
+                            }
+                            else
+                            {
+                                j = coordX2;
+                            }
+                            if (j > largeur)
+                            {
+                                largeur = j;
+                            }
+                            
+
+
+                        }
+                        else { i = 0; }
+                    }
+
+                    else { }
+                }
+            }
+            catch (IOException e1)
+            {
+                Console.WriteLine(e1);
+            }
+            try
+            {
+                sr.Close();
+            }
+            catch (IOException e2)
+            {
+                Console.WriteLine(e2);
+            }
+            largeur -= 3200;
+            return largeur;
         }
 
-        //getters
-        public string getId() { return this.id; }
-        public String getRef() { return this.référence; }
-        public String  getDesignation() { return this.designation; }
-        public String getNomFichier() { return this.nomFichier; }
-        public bool getObsolète() { return this.obsolète; }
-
-        //Setters
-        public void setId(String newId) { this.id = newId; }
-        public void setRef(String newRef) { this.référence = newRef; }
-        public void setDesignation(String newDesigna) { this.designation = newDesigna; }
-        public void setNomFichier(String newNom) { this.nomFichier = newNom; }
-        public void setObsolète(bool newBool) { this.obsolète = newBool; }
-       
-
-    }
-
-    //Classe du bloc
-    class Blocs
-    {
         
-        private String id;
-        private String réfBlock;
-        private String num;
-        private String repère;
-        private String refComp;
 
-        //constructeur
-        public Blocs(string id, string réfBlock, string num, string repère, string refComp)
+
+
+        
+       /* 
+        public void addBlock(string pathBloc)
         {
-            this.id = id;
-            this.réfBlock = réfBlock;
-            this.num = num;
-            this.repère = repère;
-            this.refComp = refComp;
+            
+            FileStream fs = File.OpenRead(pathTemp);
+            StreamReader sr = null;
+            {
+                sr = new StreamReader(fs, System.Text.Encoding.Default);
+            }
+
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e);
+
+            }
+
+            string ligne;
+
+            int largeur = largeurBloc(pathTemp);
+
+            if (largeur == 0)
+            {
+
+            }
+
+            try
+            {
+                while ((ligne = sr.ReadLine()) != null)
+                {
+
+
+
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Erreur lecture");
+            }
+
+
         }
+        */
 
-        //getters
-        public string getId() { return this.id; }
-        public String getRef() { return this.réfBlock; }
-        public String getNum() { return this.num; }
-        public String getRepère() { return this.repère; }
-        public String getRefComp() { return this.refComp; }
+       /* public void addFirstBloc()
+        {
+            int compteur = 0;
+            string line;
+            using (System.IO.StreamReader file = new System.IO.StreamReader(seletedBloc))
+            {
+                using (System.IO.StreamWriter fileWriter = new System.IO.StreamWriter(pathTemp))
+                {
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        if(line.StartsWith(""))
+                        System.Console.WriteLine(line);
+                        fileWriter.WriteLine(line);
+                        compteur++;
+                    }
+                }
+            }
 
-        //Setters
-        public void setId(String values) { this.id = values; }
-        public void setRef(String values) { this.id = values; }
-        public void setNum(String values) { this.id = values; }
-        public void setRepère(String values) { this.id = values; }
-        public void setRefComp(String values) { this.id = values; }
-
+        }
+        */
 
     }
 }
-
-
