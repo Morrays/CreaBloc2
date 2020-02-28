@@ -143,14 +143,12 @@
   <data name="button5.Location" type="System.Drawing.Point, System.Drawing">
     <value>573, 397</value>
   </data>
-  <data name="position.HeaderText" xml:space="preserve">
-    <value>position</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="position.Width" type="System.Int32, mscorlib">
+    <value>69</value>
   </data>
-  <data name="référence.HeaderText" xml:space="preserve">
-    <value>référence</value>
-  </data>
-  <data name="Repère.HeaderText" xml:space="preserve">
-    <value>Repère</value>
+  <data name="Repère.Width" type="System.Int32, mscorlib">
+    <value>79</value>
   </data>
   <data name="DataBloc.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 56</value>
@@ -182,7 +180,6 @@
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>667, 24</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

@@ -265,7 +265,7 @@ namespace CreaBloc2 {
             this.tableGeneralites = new GeneralitesDataTable();
             base.Tables.Add(this.tableGeneralites);
             this.relationComposantselemBloc = new global::System.Data.DataRelation("ComposantselemBloc", new global::System.Data.DataColumn[] {
-                        this.tableComposants.CléColumn}, new global::System.Data.DataColumn[] {
+                        this.tableComposants.RéferencesColumn}, new global::System.Data.DataColumn[] {
                         this.tableelemBloc.refComposantColumn}, false);
             this.Relations.Add(this.relationComposantselemBloc);
             this.relationGeneraliteselemBloc = new global::System.Data.DataRelation("GeneraliteselemBloc", new global::System.Data.DataColumn[] {
@@ -363,8 +363,6 @@ namespace CreaBloc2 {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ComposantsDataTable : global::System.Data.TypedTableBase<ComposantsRow> {
             
-            private global::System.Data.DataColumn columnClé;
-            
             private global::System.Data.DataColumn columnRéferences;
             
             private global::System.Data.DataColumn columnDésignation;
@@ -402,14 +400,6 @@ namespace CreaBloc2 {
             protected ComposantsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CléColumn {
-                get {
-                    return this.columnClé;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -473,10 +463,9 @@ namespace CreaBloc2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ComposantsRow AddComposantsRow(string Clé, string Réferences, string Désignation, bool Obsolescence) {
+            public ComposantsRow AddComposantsRow(string Réferences, string Désignation, bool Obsolescence) {
                 ComposantsRow rowComposantsRow = ((ComposantsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Clé,
                         Réferences,
                         Désignation,
                         Obsolescence};
@@ -487,9 +476,9 @@ namespace CreaBloc2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ComposantsRow FindByClé(string Clé) {
+            public ComposantsRow FindByRéferences(string Réferences) {
                 return ((ComposantsRow)(this.Rows.Find(new object[] {
-                            Clé})));
+                            Réferences})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -509,7 +498,6 @@ namespace CreaBloc2 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnClé = base.Columns["Clé"];
                 this.columnRéferences = base.Columns["Réferences"];
                 this.columnDésignation = base.Columns["Désignation"];
                 this.columnObsolescence = base.Columns["Obsolescence"];
@@ -518,8 +506,6 @@ namespace CreaBloc2 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnClé = new global::System.Data.DataColumn("Clé", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnClé);
                 this.columnRéferences = new global::System.Data.DataColumn("Réferences", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRéferences);
                 this.columnDésignation = new global::System.Data.DataColumn("Désignation", typeof(string), null, global::System.Data.MappingType.Element);
@@ -527,10 +513,9 @@ namespace CreaBloc2 {
                 this.columnObsolescence = new global::System.Data.DataColumn("Obsolescence", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnObsolescence);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnClé}, true));
-                this.columnClé.AllowDBNull = false;
-                this.columnClé.Unique = true;
-                this.columnClé.MaxLength = 255;
+                                this.columnRéferences}, true));
+                this.columnRéferences.AllowDBNull = false;
+                this.columnRéferences.Unique = true;
                 this.columnRéferences.MaxLength = 255;
                 this.columnDésignation.MaxLength = 255;
             }
@@ -666,8 +651,6 @@ namespace CreaBloc2 {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class elemBlocDataTable : global::System.Data.TypedTableBase<elemBlocRow> {
             
-            private global::System.Data.DataColumn columnidElem;
-            
             private global::System.Data.DataColumn columnrefBloc;
             
             private global::System.Data.DataColumn columnrefComposant;
@@ -707,14 +690,6 @@ namespace CreaBloc2 {
             protected elemBlocDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn idElemColumn {
-                get {
-                    return this.columnidElem;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -786,30 +761,22 @@ namespace CreaBloc2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public elemBlocRow AddelemBlocRow(string idElem, GeneralitesRow parentGeneralitesRowByGeneraliteselemBloc, ComposantsRow parentComposantsRowByComposantselemBloc, int position, string repère) {
+            public elemBlocRow AddelemBlocRow(GeneralitesRow parentGeneralitesRowByGeneraliteselemBloc, ComposantsRow parentComposantsRowByComposantselemBloc, int position, string repère) {
                 elemBlocRow rowelemBlocRow = ((elemBlocRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        idElem,
                         null,
                         null,
                         position,
                         repère};
                 if ((parentGeneralitesRowByGeneraliteselemBloc != null)) {
-                    columnValuesArray[1] = parentGeneralitesRowByGeneraliteselemBloc[0];
+                    columnValuesArray[0] = parentGeneralitesRowByGeneraliteselemBloc[0];
                 }
                 if ((parentComposantsRowByComposantselemBloc != null)) {
-                    columnValuesArray[2] = parentComposantsRowByComposantselemBloc[0];
+                    columnValuesArray[1] = parentComposantsRowByComposantselemBloc[0];
                 }
                 rowelemBlocRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowelemBlocRow);
                 return rowelemBlocRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public elemBlocRow FindByidElem(string idElem) {
-                return ((elemBlocRow)(this.Rows.Find(new object[] {
-                            idElem})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -829,7 +796,6 @@ namespace CreaBloc2 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnidElem = base.Columns["idElem"];
                 this.columnrefBloc = base.Columns["refBloc"];
                 this.columnrefComposant = base.Columns["refComposant"];
                 this.columnposition = base.Columns["position"];
@@ -839,8 +805,6 @@ namespace CreaBloc2 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnidElem = new global::System.Data.DataColumn("idElem", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnidElem);
                 this.columnrefBloc = new global::System.Data.DataColumn("refBloc", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrefBloc);
                 this.columnrefComposant = new global::System.Data.DataColumn("refComposant", typeof(string), null, global::System.Data.MappingType.Element);
@@ -849,11 +813,6 @@ namespace CreaBloc2 {
                 base.Columns.Add(this.columnposition);
                 this.columnrepère = new global::System.Data.DataColumn("repère", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrepère);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnidElem}, true));
-                this.columnidElem.AllowDBNull = false;
-                this.columnidElem.Unique = true;
-                this.columnidElem.MaxLength = 255;
                 this.columnrefBloc.MaxLength = 255;
                 this.columnrefComposant.MaxLength = 536870910;
                 this.columnrepère.MaxLength = 255;
@@ -1288,25 +1247,9 @@ namespace CreaBloc2 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Clé {
-                get {
-                    return ((string)(this[this.tableComposants.CléColumn]));
-                }
-                set {
-                    this[this.tableComposants.CléColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Réferences {
                 get {
-                    try {
-                        return ((string)(this[this.tableComposants.RéferencesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Réferences\' in table \'Composants\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableComposants.RéferencesColumn]));
                 }
                 set {
                     this[this.tableComposants.RéferencesColumn] = value;
@@ -1343,18 +1286,6 @@ namespace CreaBloc2 {
                 set {
                     this[this.tableComposants.ObsolescenceColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsRéferencesNull() {
-                return this.IsNull(this.tableComposants.RéferencesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetRéferencesNull() {
-                this[this.tableComposants.RéferencesColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1405,17 +1336,6 @@ namespace CreaBloc2 {
             internal elemBlocRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableelemBloc = ((elemBlocDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string idElem {
-                get {
-                    return ((string)(this[this.tableelemBloc.idElemColumn]));
-                }
-                set {
-                    this[this.tableelemBloc.idElemColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1873,19 +1793,16 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Composants";
-            tableMapping.ColumnMappings.Add("Clé", "Clé");
             tableMapping.ColumnMappings.Add("Réferences", "Réferences");
             tableMapping.ColumnMappings.Add("Désignation", "Désignation");
             tableMapping.ColumnMappings.Add("Obsolescence", "Obsolescence");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Composants` WHERE ((`Clé` = ?) AND ((? = 1 AND `Réferences` IS NULL)" +
-                " OR (`Réferences` = ?)) AND ((? = 1 AND `Désignation` IS NULL) OR (`Désignation`" +
-                " = ?)) AND ((? = 1 AND `Obsolescence` IS NULL) OR (`Obsolescence` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Composants` WHERE ((`Réferences` = ?) AND ((? = 1 AND `Désignation` " +
+                "IS NULL) OR (`Désignation` = ?)) AND ((? = 1 AND `Obsolescence` IS NULL) OR (`Ob" +
+                "solescence` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Clé", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Clé", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Réferences", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Réferences", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Réferences", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Réferences", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Désignation", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Désignation", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Désignation", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Désignation", global::System.Data.DataRowVersion.Original, false, null));
@@ -1893,23 +1810,21 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Obsolescence", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Obsolescence", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `Composants` (`Clé`, `Réferences`, `Désignation`, `Obsolescence`) VAL" +
-                "UES (?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `Composants` (`Réferences`, `Désignation`, `Obsolescence`) VALUES (?," +
+                " ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Clé", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Clé", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Réferences", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Réferences", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Désignation", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Désignation", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Obsolescence", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Obsolescence", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Composants` SET `Clé` = ?, `Réferences` = ?, `Désignation` = ?, `Obsolescence` = ? WHERE ((`Clé` = ?) AND ((? = 1 AND `Réferences` IS NULL) OR (`Réferences` = ?)) AND ((? = 1 AND `Désignation` IS NULL) OR (`Désignation` = ?)) AND ((? = 1 AND `Obsolescence` IS NULL) OR (`Obsolescence` = ?)))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE `Composants` SET `Réferences` = ?, `Désignation` = ?, `Obsolescence` = ? W" +
+                "HERE ((`Réferences` = ?) AND ((? = 1 AND `Désignation` IS NULL) OR (`Désignation" +
+                "` = ?)) AND ((? = 1 AND `Obsolescence` IS NULL) OR (`Obsolescence` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Clé", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Clé", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Réferences", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Réferences", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Désignation", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Désignation", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Obsolescence", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Obsolescence", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Clé", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Clé", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Réferences", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Réferences", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Réferences", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Réferences", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Désignation", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Désignation", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Désignation", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Désignation", global::System.Data.DataRowVersion.Original, false, null));
@@ -1930,7 +1845,7 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Clé, Réferences, Désignation, Obsolescence FROM Composants";
+            this._commandCollection[0].CommandText = "SELECT Réferences, Désignation, Obsolescence FROM Composants";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1991,31 +1906,23 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Clé, string Original_Réferences, string Original_Désignation, bool Original_Obsolescence) {
-            if ((Original_Clé == null)) {
-                throw new global::System.ArgumentNullException("Original_Clé");
+        public virtual int Delete(string Original_Réferences, string Original_Désignation, bool Original_Obsolescence) {
+            if ((Original_Réferences == null)) {
+                throw new global::System.ArgumentNullException("Original_Réferences");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Clé));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Réferences));
             }
-            if ((Original_Réferences == null)) {
+            if ((Original_Désignation == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Réferences));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Désignation));
             }
-            if ((Original_Désignation == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Désignation));
-            }
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_Obsolescence));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Obsolescence));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2036,26 +1943,20 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Clé, string Réferences, string Désignation, bool Obsolescence) {
-            if ((Clé == null)) {
-                throw new global::System.ArgumentNullException("Clé");
+        public virtual int Insert(string Réferences, string Désignation, bool Obsolescence) {
+            if ((Réferences == null)) {
+                throw new global::System.ArgumentNullException("Réferences");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Clé));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Réferences));
             }
-            if ((Réferences == null)) {
+            if ((Désignation == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Réferences));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Désignation));
             }
-            if ((Désignation == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Désignation));
-            }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(Obsolescence));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((bool)(Obsolescence));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2076,50 +1977,36 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Clé, string Réferences, string Désignation, bool Obsolescence, string Original_Clé, string Original_Réferences, string Original_Désignation, bool Original_Obsolescence) {
-            if ((Clé == null)) {
-                throw new global::System.ArgumentNullException("Clé");
+        public virtual int Update(string Réferences, string Désignation, bool Obsolescence, string Original_Réferences, string Original_Désignation, bool Original_Obsolescence) {
+            if ((Réferences == null)) {
+                throw new global::System.ArgumentNullException("Réferences");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Clé));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Réferences));
             }
-            if ((Réferences == null)) {
+            if ((Désignation == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Réferences));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Désignation));
             }
-            if ((Désignation == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Désignation));
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(Obsolescence));
-            if ((Original_Clé == null)) {
-                throw new global::System.ArgumentNullException("Original_Clé");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_Clé));
-            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((bool)(Obsolescence));
             if ((Original_Réferences == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("Original_Réferences");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Réferences));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_Réferences));
             }
             if ((Original_Désignation == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Désignation));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Désignation));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_Obsolescence));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Original_Obsolescence));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2140,8 +2027,8 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Réferences, string Désignation, bool Obsolescence, string Original_Clé, string Original_Réferences, string Original_Désignation, bool Original_Obsolescence) {
-            return this.Update(Original_Clé, Réferences, Désignation, Obsolescence, Original_Clé, Original_Réferences, Original_Désignation, Original_Obsolescence);
+        public virtual int Update(string Désignation, bool Obsolescence, string Original_Réferences, string Original_Désignation, bool Original_Obsolescence) {
+            return this.Update(Original_Réferences, Désignation, Obsolescence, Original_Réferences, Original_Désignation, Original_Obsolescence);
         }
     }
     
@@ -2266,51 +2153,20 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "elemBloc";
-            tableMapping.ColumnMappings.Add("idElem", "idElem");
             tableMapping.ColumnMappings.Add("refBloc", "refBloc");
             tableMapping.ColumnMappings.Add("refComposant", "refComposant");
             tableMapping.ColumnMappings.Add("position", "position");
             tableMapping.ColumnMappings.Add("repère", "repère");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `elemBloc` WHERE ((`idElem` = ?) AND ((? = 1 AND `refBloc` IS NULL) O" +
-                "R (`refBloc` = ?)) AND ((? = 1 AND `position` IS NULL) OR (`position` = ?)) AND " +
-                "((? = 1 AND `repère` IS NULL) OR (`repère` = ?)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_idElem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "idElem", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_refBloc", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "refBloc", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_refBloc", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "refBloc", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_position", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "position", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_position", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "position", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_repère", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "repère", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_repère", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "repère", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `elemBloc` (`idElem`, `refBloc`, `refComposant`, `position`, `repère`" +
-                ") VALUES (?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `elemBloc` (`refBloc`, `refComposant`, `position`, `repère`) VALUES (" +
+                "?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("idElem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "idElem", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("refBloc", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "refBloc", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("refComposant", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "refComposant", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("position", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "position", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("repère", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "repère", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `elemBloc` SET `idElem` = ?, `refBloc` = ?, `refComposant` = ?, `position` = ?, `repère` = ? WHERE ((`idElem` = ?) AND ((? = 1 AND `refBloc` IS NULL) OR (`refBloc` = ?)) AND ((? = 1 AND `position` IS NULL) OR (`position` = ?)) AND ((? = 1 AND `repère` IS NULL) OR (`repère` = ?)))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("idElem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "idElem", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("refBloc", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "refBloc", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("refComposant", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "refComposant", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("position", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "position", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("repère", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "repère", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_idElem", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "idElem", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_refBloc", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "refBloc", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_refBloc", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "refBloc", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_position", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "position", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_position", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "position", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_repère", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "repère", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_repère", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "repère", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2326,7 +2182,7 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT idElem, refBloc, refComposant, [position], repère FROM elemBloc";
+            this._commandCollection[0].CommandText = "SELECT refBloc, refComposant, [position], repère FROM elemBloc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2386,88 +2242,31 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_idElem, string Original_refBloc, global::System.Nullable<int> Original_position, string Original_repère) {
-            if ((Original_idElem == null)) {
-                throw new global::System.ArgumentNullException("Original_idElem");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_idElem));
-            }
-            if ((Original_refBloc == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_refBloc));
-            }
-            if ((Original_position.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_position.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_repère == null)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_repère));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string idElem, string refBloc, string refComposant, global::System.Nullable<int> position, string repère) {
-            if ((idElem == null)) {
-                throw new global::System.ArgumentNullException("idElem");
+        public virtual int Insert(string refBloc, string refComposant, global::System.Nullable<int> position, string repère) {
+            if ((refBloc == null)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(idElem));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(refBloc));
             }
-            if ((refBloc == null)) {
+            if ((refComposant == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(refBloc));
-            }
-            if ((refComposant == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(refComposant));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(refComposant));
             }
             if ((position.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(position.Value));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(position.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             if ((repère == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(repère));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(repère));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2483,95 +2282,6 @@ namespace CreaBloc2.DBBlocsDataSetTableAdapters {
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string idElem, string refBloc, string refComposant, global::System.Nullable<int> position, string repère, string Original_idElem, string Original_refBloc, global::System.Nullable<int> Original_position, string Original_repère) {
-            if ((idElem == null)) {
-                throw new global::System.ArgumentNullException("idElem");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(idElem));
-            }
-            if ((refBloc == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(refBloc));
-            }
-            if ((refComposant == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(refComposant));
-            }
-            if ((position.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(position.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((repère == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(repère));
-            }
-            if ((Original_idElem == null)) {
-                throw new global::System.ArgumentNullException("Original_idElem");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_idElem));
-            }
-            if ((Original_refBloc == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_refBloc));
-            }
-            if ((Original_position.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_position.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((Original_repère == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_repère));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string refBloc, string refComposant, global::System.Nullable<int> position, string repère, string Original_idElem, string Original_refBloc, global::System.Nullable<int> Original_position, string Original_repère) {
-            return this.Update(Original_idElem, refBloc, refComposant, position, repère, Original_idElem, Original_refBloc, Original_position, Original_repère);
         }
     }
     

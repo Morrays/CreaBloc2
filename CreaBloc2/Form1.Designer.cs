@@ -44,8 +44,13 @@ namespace CreaBloc2
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.DataBloc = new System.Windows.Forms.DataGridView();
+            this.position = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.référence = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.composantsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dBBlocsDataSet2 = new CreaBloc2.DBBlocsDataSet();
+            this.Repère = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dBBlocsDataSet1 = new CreaBloc2.DBBlocsDataSet();
             this.composantsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dBBlocsDataSet = new CreaBloc2.DBBlocsDataSet();
             this.button6 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -53,23 +58,24 @@ namespace CreaBloc2
             this.languageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.françaisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.composantsTableAdapter = new CreaBloc2.DBBlocsDataSetTableAdapters.ComposantsTableAdapter();
-            this.composantselemBlocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.elemBlocTableAdapter = new CreaBloc2.DBBlocsDataSetTableAdapters.elemBlocTableAdapter();
-            this.position = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.référence = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Repère = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.composantselemBlocBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.elemBlocTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.elemBlocTableAdapter();
+            this.composantsTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.ComposantsTableAdapter();
+            this.elemBlocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DataBloc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.composantselemBlocBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.composantselemBlocBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.elemBlocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.Name = "textBox1";
             // 
             // label1
@@ -114,11 +120,11 @@ namespace CreaBloc2
             // 
             // DataBloc
             // 
-            resources.ApplyResources(this.DataBloc, "DataBloc");
             this.DataBloc.AllowUserToAddRows = false;
             this.DataBloc.AllowUserToDeleteRows = false;
             this.DataBloc.AllowUserToResizeColumns = false;
             this.DataBloc.AllowUserToResizeRows = false;
+            resources.ApplyResources(this.DataBloc, "DataBloc");
             this.DataBloc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -153,20 +159,48 @@ namespace CreaBloc2
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataBloc.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataBloc.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.DataBloc.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataBloc_CellValueChanged);
-            this.DataBloc.CurrentCellDirtyStateChanged += new System.EventHandler(this.DataBloc_CurrentCellDirtyStateChanged);
+            this.DataBloc.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataBloc_EditingControlShowing);
             this.DataBloc.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DataBloc_RowsAdded);
             this.DataBloc.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.DataBloc_RowsRemoved);
+            this.DataBloc.Enter += new System.EventHandler(this.ctrl_Enter);
             // 
-            // composantsBindingSource
+            // position
             // 
-            this.composantsBindingSource.DataMember = "Composants";
-            this.composantsBindingSource.DataSource = this.dBBlocsDataSet;
+            resources.ApplyResources(this.position, "position");
+            this.position.Name = "position";
+            this.position.ReadOnly = true;
+            this.position.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // dBBlocsDataSet
+            // référence
             // 
-            this.dBBlocsDataSet.DataSetName = "DBBlocsDataSet";
-            this.dBBlocsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.référence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.référence.DataSource = this.composantsBindingSource1;
+            this.référence.DisplayMember = "Réferences";
+            this.référence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            resources.ApplyResources(this.référence, "référence");
+            this.référence.Name = "référence";
+            this.référence.ValueMember = "Réferences";
+            // 
+            // composantsBindingSource1
+            // 
+            this.composantsBindingSource1.DataMember = "Composants";
+            this.composantsBindingSource1.DataSource = this.dBBlocsDataSet2;
+            // 
+            // dBBlocsDataSet2
+            // 
+            this.dBBlocsDataSet2.DataSetName = "DBBlocsDataSet";
+            this.dBBlocsDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // Repère
+            // 
+            resources.ApplyResources(this.Repère, "Repère");
+            this.Repère.Name = "Repère";
+            this.Repère.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dBBlocsDataSet1
+            // 
+            this.dBBlocsDataSet1.DataSetName = "DBBlocsDataSet";
+            this.dBBlocsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // button6
             // 
@@ -178,79 +212,58 @@ namespace CreaBloc2
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // languageToolStripMenuItem
             // 
-            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.englishToolStripMenuItem,
             this.françaisToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             // 
             // englishToolStripMenuItem
             // 
-            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
             this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
             // 
             // françaisToolStripMenuItem
             // 
-            resources.ApplyResources(this.françaisToolStripMenuItem, "françaisToolStripMenuItem");
             this.françaisToolStripMenuItem.Name = "françaisToolStripMenuItem";
+            resources.ApplyResources(this.françaisToolStripMenuItem, "françaisToolStripMenuItem");
             this.françaisToolStripMenuItem.Click += new System.EventHandler(this.françaisToolStripMenuItem_Click);
             // 
-            // composantsTableAdapter
+            // elemBlocTableAdapter1
             // 
-            this.composantsTableAdapter.ClearBeforeFill = true;
+            this.elemBlocTableAdapter1.ClearBeforeFill = true;
             // 
-            // composantselemBlocBindingSource
+            // composantsTableAdapter1
             // 
-            this.composantselemBlocBindingSource.DataMember = "ComposantselemBloc";
-            this.composantselemBlocBindingSource.DataSource = this.composantsBindingSource;
+            this.composantsTableAdapter1.ClearBeforeFill = true;
             // 
-            // elemBlocTableAdapter
+            // elemBlocBindingSource
             // 
-            this.elemBlocTableAdapter.ClearBeforeFill = true;
-            // 
-            // position
-            // 
-            this.position.Name = "position";
-            this.position.ReadOnly = true;
-            this.position.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // référence
-            // 
-            this.référence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.référence.DataSource = this.composantselemBlocBindingSource;
-            this.référence.DisplayMember = "Réferences";
-            this.référence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.référence.Name = "référence";
-            this.référence.ValueMember = "Clé";
-            // 
-            // Repère
-            // 
-            this.Repère.Name = "Repère";
-            this.Repère.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.elemBlocBindingSource.DataMember = "elemBloc";
+            this.elemBlocBindingSource.DataSource = this.dBBlocsDataSet1;
             // 
             // Form1
             // 
-            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.button6);
             this.Controls.Add(this.DataBloc);
             this.Controls.Add(this.button5);
@@ -267,11 +280,14 @@ namespace CreaBloc2
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataBloc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.composantselemBlocBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.composantselemBlocBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.elemBlocBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,15 +306,21 @@ namespace CreaBloc2
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private DBBlocsDataSet dBBlocsDataSet;
-        private System.Windows.Forms.BindingSource composantsBindingSource;
         private DBBlocsDataSetTableAdapters.ComposantsTableAdapter composantsTableAdapter;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem languageToolStripMenuItem;
         private ToolStripMenuItem englishToolStripMenuItem;
         private ToolStripMenuItem françaisToolStripMenuItem;
-        private BindingSource composantselemBlocBindingSource;
         private DBBlocsDataSetTableAdapters.elemBlocTableAdapter elemBlocTableAdapter;
+        private BindingSource composantselemBlocBindingSource1;
+        private BindingSource composantsBindingSource;
+        private DBBlocsDataSet dBBlocsDataSet1;
+        private DBBlocsDataSetTableAdapters.elemBlocTableAdapter elemBlocTableAdapter1;
+        private DBBlocsDataSet dBBlocsDataSet2;
+        private BindingSource composantsBindingSource1;
+        private DBBlocsDataSetTableAdapters.ComposantsTableAdapter composantsTableAdapter1;
+        private BindingSource elemBlocBindingSource;
         private DataGridViewTextBoxColumn position;
         private DataGridViewComboBoxColumn référence;
         private DataGridViewTextBoxColumn Repère;

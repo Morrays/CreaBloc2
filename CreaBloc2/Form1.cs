@@ -26,81 +26,15 @@ namespace CreaBloc2
 		
 		public int i = 0;
 
-		//Trigger Boutton Insertion de ligne dans le dataGridView
-		private void button1_Click(object sender, EventArgs e)
-		{
-			DataBloc.Rows.Add();
-		}
-
-		//Trigger Boutton Supprimer Ligne dans le dataGridView
-		private void button2_Click_1(object sender, EventArgs e)
-		{
-
-			if (DataBloc.SelectedRows.Count > 0)
-			{
-				DataGridViewSelectedRowCollection row = DataBloc.SelectedRows;
-
-				DataBloc.Rows.RemoveAt(DataBloc.SelectedRows[0].Index);
-			}
-			else
-			{
-				MessageBox.Show("Veuillez selectionner une ligne", "Erreur", MessageBoxButtons.OK);
-			}
-		}
-
-		//Trigger Button pour quitter
-		private void button5_Click(object sender, EventArgs e)
-		{
-			if (MessageBox.Show("Voulez-vous vraiment quitter", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-			{
-				string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-				string dossier = "TempBloc";
-				string fullPath = path + @"\" + dossier;
-				File.Delete(fullPath + @"\newBloc.txt");
-				Application.Exit();
-			}
-		}
-
-		//Trigger boutton Annuler
-		private void button4_Click(object sender, EventArgs e)
-		{
-
-			DataBloc.Rows.Clear();
-		}
-
-		//Trigger Boutton Ouvrir Fichier
-		private void button6_Click(object sender, EventArgs e)
-		{
-
-			int size = -1;
-			DialogResult result = openFileDialog1.ShowDialog(); // Ouvre la selection de fichier
-			if (result == DialogResult.OK)
-			{
-
-				string file = openFileDialog1.FileName;
-				try
-				{
-					string text = File.ReadAllText(file);
-					size = text.Length;
-				}
-				catch (IOException)
-				{
-				}
-			}
-			Console.WriteLine(size); //Affiche la taille du fichier en mode debug (console)
-			Console.WriteLine(result);
-		}
-
+		//--------FormLoad--------//
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			// TODO: This line of code loads data into the 'dBBlocsDataSet.elemBloc' table. You can move, or remove it, as needed.
-			this.elemBlocTableAdapter.Fill(this.dBBlocsDataSet.elemBloc);
-			// TODO: This line of code loads data into the 'dBBlocsDataSet.Composants' table. You can move, or remove it, as needed.
-			this.composantsTableAdapter.Fill(this.dBBlocsDataSet.Composants);
+			// TODO: This line of code loads data into the 'dBBlocsDataSet2.Composants' table. You can move, or remove it, as needed.
+			this.composantsTableAdapter1.Fill(this.dBBlocsDataSet2.Composants);
+
 
 			//Crée un fichier txt
-
-			Directory.CreateDirectory(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TempBloc"));
+			Directory.CreateDirectory(@"C:\Users\beaudonnelk\Documents\TempBloc\blocSelected");
 			
 
 			//Emplacement du fichier temporaire
@@ -122,28 +56,105 @@ namespace CreaBloc2
 				using (FileStream fs = File.Create(nomFichier))
 				{
 
-					
-					Byte[] intro = new UTF8Encoding(true).GetBytes("<< Schéma WinRelais [Bloc] >> \r\n" +
-						"¤#Version\r\n" +
-						"¤2·2·\r\n" +
-						"EYNARD Pascal·Ingerea·\r\n" +
-						"Version 2.2a Premium·\r\n" +
-						"¤#PMilieu¤\r\n" +
-						"4400·10000\r\n" +
-						"¤#NombreSymbole¤");
-
-					fs.Write(intro, 0, intro.Length);
 				}
 
-			}
+
+				using (StreamWriter sw = new StreamWriter(nomFichier))
+				{
+					sw.WriteLine("<< Schéma WinRelais [Bloc] >>");
+					sw.WriteLine("¤#Version");
+					sw.WriteLine("¤2·2·");
+					sw.WriteLine("EYNARD Pascal·Ingerea·");
+					sw.WriteLine("Version 2.2a Premium·");
+					sw.WriteLine("¤#PMilieu¤");
+					sw.WriteLine("4400·10000");
+					sw.WriteLine("¤#NombreSymbole¤");
+
+				}
+
+
+
+
+            }
 			catch
 			{
-				Console.WriteLine("Erreur dans la création du fichier");
+				MessageBox.Show("Erreur dans la création du fichier");
 			}
 
 
 
 		}
+
+		//-----------------------//
+
+		//--------Bouton--------//
+
+		//Trigger Boutton Insertion de ligne dans le dataGridView
+		private void button1_Click(object sender, EventArgs e)
+		{
+			DataBloc.Rows.Add();
+		}
+
+		//Trigger Boutton Supprimer Ligne dans le dataGridView
+		private void button2_Click_1(object sender, EventArgs e)
+		{
+
+			if (DataBloc.SelectedRows.Count > 0)
+			{
+
+				DataGridViewSelectedRowCollection row = DataBloc.SelectedRows;
+
+				DataBloc.Rows.RemoveAt(DataBloc.SelectedRows[0].Index);
+			}
+			else
+			{
+				MessageBox.Show("Veuillez selectionner une ligne", "Erreur", MessageBoxButtons.OK);
+			}
+		}
+
+		//Trigger Button pour quitter
+		private void button5_Click(object sender, EventArgs e)
+		{
+			if (MessageBox.Show("Voulez-vous vraiment quitter", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+			{
+				string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+ @"\TempBloc";
+				File.Delete(path + @"\newBloc.xrb");
+				Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TempBloc", "tempSelectedBloc"));
+				Application.Exit();
+			}
+		}
+
+		//Trigger boutton Annuler
+		private void button4_Click(object sender, EventArgs e)
+		{
+			DataBloc.Rows.Clear();
+		}
+
+		//Trigger Boutton Ouvrir Fichier
+		private void button6_Click(object sender, EventArgs e)
+		{
+
+			int size = -1;
+			DialogResult result = openFileDialog1.ShowDialog(); // Ouvre la selection de fichier
+			if (result == DialogResult.OK)
+			{
+				string file = openFileDialog1.FileName;
+				try
+				{
+					string text = File.ReadAllText(file);
+					size = text.Length;
+				}
+				catch (IOException)
+				{
+				}
+			}
+			Console.WriteLine(size); //Affiche la taille du fichier en mode debug (console)
+			Console.WriteLine(result);
+		}
+
+		//-----------------------------//
+
+		//--------Datagridview--------//
 
 		// Affiche la position de chaque rangée dans le datagridview a chaque ajout de rangée
 		private void DataBloc_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -170,64 +181,6 @@ namespace CreaBloc2
 
 		}
 
-
-		//Enregistrement du bloc 
-		private void button3_Click(object sender, EventArgs e)
-		{
-
-			if (MessageBox.Show("Voulez-vous vraiment sauvegarder", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-			{
-				string nomReference = textBox1.Text;
-				string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-				string dossier = @"TempBloc\";
-				string fullPath = path + @"\" + dossier;
-
-
-				string newPath = @"S:\BE\ELECTRONIQUE\6-Outils\GenS4\Blocs\BlocsBornesAuto\";
-
-				System.IO.File.Copy(fullPath + @"newBloc.txt", newPath + nomReference + ".xrb");
-
-			}
-		}
-
-		//Test Largeur
-		private void button7_Click(object sender, EventArgs e)
-		{
-			string path = @"C:\Users\beaudonnelk\Documents\Test winrelais\testlong.xrb";
-			int larg = ElemBlocs.largeurBloc(path);
-			Console.WriteLine("Largeur: " + larg);
-
-		}
-
-		void DataBloc_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-		{
-			if (DataBloc.IsCurrentCellDirty)
-			{
-				// This fires the cell value changed handler below
-				DataBloc.CommitEdit(DataGridViewDataErrorContexts.Commit);
-			}
-		}
-
-		//Trigger quand un élément du combobox est changé
-		private void DataBloc_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-		{
-			//index de la colone du combobox = 1 car 2eme colone dans le datadridview
-
-			DataGridViewComboBoxCell cb = (DataGridViewComboBoxCell)DataBloc.Rows[e.RowIndex].Cells[1];
-
-			if (e.ColumnIndex == DataBloc.Columns[1].Index)
-			{
-				if (cb.Value != null)
-				{
-					MessageBox.Show("Index");
-					DataBloc.Invalidate();
-				}
-			}
-		}
-
-
-
-
 		// Permet de cliquer une seule fois pour ouvrir la liste déroulante
 		private void DataBloc_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
 		{
@@ -238,11 +191,70 @@ namespace CreaBloc2
 		}
 		void ctrl_Enter(object sender, EventArgs e)
 		{
-			(sender as ComboBox).DroppedDown = true;
+
+		}
+		//------------------------------//
+
+
+		//--------AJOUT DE BLOC--------//
+
+		//Enregistrement du bloc 
+		private void button3_Click(object sender, EventArgs e)
+		{
+
+			if (MessageBox.Show("Voulez-vous vraiment sauvegarder", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+			{
+				//string dans le textbox pour le nom(référence) du bloc
+				string nomReference = textBox1.Text;
+
+				//Emplacement fichier temporaire
+				string path = @"C:\Users\beaudonnelk\Documents\TempBloc\newBloc.xrb";
+
+				//Emplacement fichier sauvegarder 
+				string newPath = @"S:\BE\ELECTRONIQUE\6-Outils\GenS4\Blocs\BlocsBornesAuto\";
+
+				//Emplacemenf fichier composant TEST
+				string composant = @"C:\Users\beaudonnelk\Documents\Test winrelais\";
+
+				for (int i =0; i< DataBloc.Rows.Count;i++)
+				{
+					var valeur = DataBloc.Rows[i].Cells[1].Value;
+					Console.WriteLine(valeur+ ".xrb");
+
+					string composantSelect = composant + valeur + ".xrb";
+
+					if (i == 0)
+					{
+						ElemBlocs.addFirstBloc(path, composantSelect);
+
+					}
+					else
+					{
+						ElemBlocs.addBlock(path, composantSelect);
+					}
+				}
+
+				string finalPath = newPath + nomReference + ".xrb";
+				Console.WriteLine(finalPath);
+
+				//copie le fichier temp dans le bon dossier
+				//File.Copy(path, finalPath);
+
+				
+
+			}
 		}
 
+		//Test: Largeur
+		private void button7_Click(object sender, EventArgs e)
+		{
+			string path = @"C:\Users\beaudonnelk\Documents\Test winrelais\testlong.xrb";
+			int larg = ElemBlocs.LargeurBloc(path);
+			Console.WriteLine("Largeur: " + larg);
 
-		//MULTILANGUE//
+		}
+
+		//--------MULTILANGUE--------//
 
 		//Fonction appelé pour changer la langue
 		private void ChangeLangue(string lang) 
@@ -256,34 +268,46 @@ namespace CreaBloc2
 
 		private void englishToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			
-			//Change la langue en anglais (USA)
-			language = "en-US";
-			englishToolStripMenuItem.Checked = true;
-			françaisToolStripMenuItem.Checked = false;
+			if (MessageBox.Show("Do you want to change the language to english ?\r\n \r\nVoulez-vous changer la langue en anglais ?", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+			{
+				if (MessageBox.Show("Restart required \r\n \r\nRedémarrage requis", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+				{
+					//Change la langue en anglais (USA)
+					language = "en-US";
+					englishToolStripMenuItem.Checked = true;
+					françaisToolStripMenuItem.Checked = false;
 
-			//Sauvegarde le choix de l'utilisateur dans les paramètres
-			Properties.Settings.Default.langue = "en-US";
-			Properties.Settings.Default.Save();
 
-			//Redémarage de l'application 
-			Application.Restart();
+
+					//Sauvegarde le choix de l'utilisateur dans les paramètres
+					Properties.Settings.Default.langue = "en-US";
+					Properties.Settings.Default.Save();
+
+					//Redémarage de l'application 
+					Application.Restart();
+				}
+			}
 		}
 
 		private void françaisToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			//Change la langue en français
-			language = "en-US";
-			englishToolStripMenuItem.Checked = false;
-			françaisToolStripMenuItem.Checked = true;
+			if (MessageBox.Show("Do you want to change the language to french ?\r\n \r\nVoulez-vous changer la langue en français ?", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+			{
+				if (MessageBox.Show("Restart required \r\n \r\nRedémarrage requis", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+				{
+				//Change la langue en français
+				language = "en-US";
+				englishToolStripMenuItem.Checked = false;
+				françaisToolStripMenuItem.Checked = true;
 
-			
-			Properties.Settings.Default.langue = "fr-FR";
-			Properties.Settings.Default.Save();
+				Properties.Settings.Default.langue = "fr-FR";
+				Properties.Settings.Default.Save();
 
-			Application.Restart();
-
+				Application.Restart();
+				}
+			}
 		}
+
 	}
 	
 

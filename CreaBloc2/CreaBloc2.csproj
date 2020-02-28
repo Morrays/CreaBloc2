@@ -62,6 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blocs.cs" />
+    <Compile Include="DBBlocsDataSet.cs">
+      <DependentUpon>DBBlocsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DBBlocsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
