@@ -44,11 +44,8 @@ namespace CreaBloc2
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.DataBloc = new System.Windows.Forms.DataGridView();
-            this.position = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.référence = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.composantsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dBBlocsDataSet2 = new CreaBloc2.DBBlocsDataSet();
-            this.Repère = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dBBlocsDataSet1 = new CreaBloc2.DBBlocsDataSet();
             this.composantsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button6 = new System.Windows.Forms.Button();
@@ -62,6 +59,9 @@ namespace CreaBloc2
             this.elemBlocTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.elemBlocTableAdapter();
             this.composantsTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.ComposantsTableAdapter();
             this.elemBlocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.position = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.référence = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Reprère = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataBloc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet2)).BeginInit();
@@ -138,7 +138,7 @@ namespace CreaBloc2
             this.DataBloc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.position,
             this.référence,
-            this.Repère});
+            this.Reprère});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -159,27 +159,8 @@ namespace CreaBloc2
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataBloc.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataBloc.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.DataBloc.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DataBloc_EditingControlShowing);
             this.DataBloc.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DataBloc_RowsAdded);
             this.DataBloc.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.DataBloc_RowsRemoved);
-            this.DataBloc.Enter += new System.EventHandler(this.ctrl_Enter);
-            // 
-            // position
-            // 
-            resources.ApplyResources(this.position, "position");
-            this.position.Name = "position";
-            this.position.ReadOnly = true;
-            this.position.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // référence
-            // 
-            this.référence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.référence.DataSource = this.composantsBindingSource1;
-            this.référence.DisplayMember = "Réferences";
-            this.référence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            resources.ApplyResources(this.référence, "référence");
-            this.référence.Name = "référence";
-            this.référence.ValueMember = "Réferences";
             // 
             // composantsBindingSource1
             // 
@@ -190,12 +171,6 @@ namespace CreaBloc2
             // 
             this.dBBlocsDataSet2.DataSetName = "DBBlocsDataSet";
             this.dBBlocsDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // Repère
-            // 
-            resources.ApplyResources(this.Repère, "Repère");
-            this.Repère.Name = "Repère";
-            this.Repère.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // dBBlocsDataSet1
             // 
@@ -260,6 +235,28 @@ namespace CreaBloc2
             this.elemBlocBindingSource.DataMember = "elemBloc";
             this.elemBlocBindingSource.DataSource = this.dBBlocsDataSet1;
             // 
+            // position
+            // 
+            resources.ApplyResources(this.position, "position");
+            this.position.Name = "position";
+            this.position.ReadOnly = true;
+            this.position.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // référence
+            // 
+            this.référence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.référence.DataSource = this.composantsBindingSource1;
+            this.référence.DisplayMember = "Réferences";
+            this.référence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            resources.ApplyResources(this.référence, "référence");
+            this.référence.Name = "référence";
+            this.référence.ValueMember = "Réferences";
+            // 
+            // Reprère
+            // 
+            resources.ApplyResources(this.Reprère, "Reprère");
+            this.Reprère.Name = "Reprère";
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -323,7 +320,7 @@ namespace CreaBloc2
         private BindingSource elemBlocBindingSource;
         private DataGridViewTextBoxColumn position;
         private DataGridViewComboBoxColumn référence;
-        private DataGridViewTextBoxColumn Repère;
+        private DataGridViewTextBoxColumn Reprère;
     }
 }
 

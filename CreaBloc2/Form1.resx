@@ -330,14 +330,14 @@
   <data name="référence.HeaderText" xml:space="preserve">
     <value>Reference</value>
   </data>
-  <metadata name="Repère.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Reprère.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="Repère.HeaderText" xml:space="preserve">
-    <value>Landmark</value>
+  <data name="Reprère.HeaderText" xml:space="preserve">
+    <value>Reprère</value>
   </data>
-  <data name="Repère.Width" type="System.Int32, mscorlib">
-    <value>79</value>
+  <data name="Reprère.Width" type="System.Int32, mscorlib">
+    <value>70</value>
   </data>
   <data name="DataBloc.Location" type="System.Drawing.Point, System.Drawing">
     <value>26, 55</value>
@@ -471,18 +471,6 @@
   <data name="$this.Text" xml:space="preserve">
     <value>CreaBloc</value>
   </data>
-  <data name="&gt;&gt;position.Name" xml:space="preserve">
-    <value>position</value>
-  </data>
-  <data name="&gt;&gt;position.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;référence.Name" xml:space="preserve">
-    <value>référence</value>
-  </data>
-  <data name="&gt;&gt;référence.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewComboBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;composantsBindingSource1.Name" xml:space="preserve">
     <value>composantsBindingSource1</value>
   </data>
@@ -494,12 +482,6 @@
   </data>
   <data name="&gt;&gt;dBBlocsDataSet2.Type" xml:space="preserve">
     <value>CreaBloc2.DBBlocsDataSet, DBBlocsDataSet.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;Repère.Name" xml:space="preserve">
-    <value>Repère</value>
-  </data>
-  <data name="&gt;&gt;Repère.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dBBlocsDataSet1.Name" xml:space="preserve">
     <value>dBBlocsDataSet1</value>
@@ -566,6 +548,24 @@
   </data>
   <data name="&gt;&gt;elemBlocBindingSource.Type" xml:space="preserve">
     <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;position.Name" xml:space="preserve">
+    <value>position</value>
+  </data>
+  <data name="&gt;&gt;position.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;référence.Name" xml:space="preserve">
+    <value>référence</value>
+  </data>
+  <data name="&gt;&gt;référence.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewComboBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Reprère.Name" xml:space="preserve">
+    <value>Reprère</value>
+  </data>
+  <data name="&gt;&gt;Reprère.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

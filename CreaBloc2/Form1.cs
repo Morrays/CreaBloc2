@@ -59,11 +59,11 @@ namespace CreaBloc2
 				}
 
 
-				using (StreamWriter sw = new StreamWriter(nomFichier))
+				using (StreamWriter sw = new StreamWriter(nomFichier, true, System.Text.Encoding.GetEncoding(1252)))
 				{
 					sw.WriteLine("<< Schéma WinRelais [Bloc] >>");
 					sw.WriteLine("¤#Version");
-					sw.WriteLine("¤2·2·");
+					sw.WriteLine("2·2·");
 					sw.WriteLine("EYNARD Pascal·Ingerea·");
 					sw.WriteLine("Version 2.2a Premium·");
 					sw.WriteLine("¤#PMilieu¤");
@@ -119,7 +119,7 @@ namespace CreaBloc2
 			{
 				string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+ @"\TempBloc";
 				File.Delete(path + @"\newBloc.xrb");
-				Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TempBloc", "tempSelectedBloc"));
+				Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TempBloc", "tempSelectedBloc.xrb"));
 				Application.Exit();
 			}
 		}
@@ -133,7 +133,6 @@ namespace CreaBloc2
 		//Trigger Boutton Ouvrir Fichier
 		private void button6_Click(object sender, EventArgs e)
 		{
-
 			int size = -1;
 			DialogResult result = openFileDialog1.ShowDialog(); // Ouvre la selection de fichier
 			if (result == DialogResult.OK)
@@ -181,18 +180,6 @@ namespace CreaBloc2
 
 		}
 
-		// Permet de cliquer une seule fois pour ouvrir la liste déroulante
-		private void DataBloc_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-		{
-			ComboBox ctrl = e.Control as ComboBox;
-			ctrl.Enter -= new EventHandler(ctrl_Enter);
-			ctrl.Enter += new EventHandler(ctrl_Enter);
-
-		}
-		void ctrl_Enter(object sender, EventArgs e)
-		{
-
-		}
 		//------------------------------//
 
 
@@ -219,40 +206,43 @@ namespace CreaBloc2
 				for (int i =0; i< DataBloc.Rows.Count;i++)
 				{
 					var valeur = DataBloc.Rows[i].Cells[1].Value;
-					Console.WriteLine(valeur+ ".xrb");
 
+					int nbrRows = DataBloc.Rows.Count; 
 					string composantSelect = composant + valeur + ".xrb";
-
+					var RepereValue = DataBloc.Rows[i].Cells[2].Value;
+					string unRepere ="" + RepereValue;
+					
 					if (i == 0)
 					{
-						ElemBlocs.addFirstBloc(path, composantSelect);
+						ElemBlocs.addFirstBloc(path, composantSelect, nbrRows, unRepere);
 
 					}
 					else
 					{
-						ElemBlocs.addBlock(path, composantSelect);
+						ElemBlocs.addBlock(path, composantSelect, unRepere, i);
 					}
 				}
 
 				string finalPath = newPath + nomReference + ".xrb";
-				Console.WriteLine(finalPath);
 
-				//copie le fichier temp dans le bon dossier
-				//File.Copy(path, finalPath);
+				//copie le fichier temp dans le bon dossier		
+
+				if (File.Exists(finalPath))
+				{
+					MessageBox.Show("Le Bloc existe déjà","Erreur");
+				}
+				else
+				{
+				File.Copy(path, finalPath);
+				}
 
 				
 
 			}
 		}
 
-		//Test: Largeur
-		private void button7_Click(object sender, EventArgs e)
-		{
-			string path = @"C:\Users\beaudonnelk\Documents\Test winrelais\testlong.xrb";
-			int larg = ElemBlocs.LargeurBloc(path);
-			Console.WriteLine("Largeur: " + larg);
+		//----------------------------//
 
-		}
 
 		//--------MULTILANGUE--------//
 
@@ -309,7 +299,8 @@ namespace CreaBloc2
 		}
 
 	}
-	
+
+	//------------------------------//
 
 }
 
