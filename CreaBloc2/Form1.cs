@@ -48,32 +48,7 @@ namespace CreaBloc2
 			//Ecrit dans le fichier les lignes qui ne changent pas dans tous les blocs
 			try
 			{
-				if (File.Exists(nomFichier))
-				{
-					File.Delete(nomFichier);
-				}
-
-				using (FileStream fs = File.Create(nomFichier))
-				{
-
-				}
-
-
-				using (StreamWriter sw = new StreamWriter(nomFichier, true, System.Text.Encoding.GetEncoding(1252)))
-				{
-					sw.WriteLine("<< Schéma WinRelais [Bloc] >>");
-					sw.WriteLine("¤#Version");
-					sw.WriteLine("2·2·");
-					sw.WriteLine("EYNARD Pascal·Ingerea·");
-					sw.WriteLine("Version 2.2a Premium·");
-					sw.WriteLine("¤#PMilieu¤");
-					sw.WriteLine("4400·10000");
-					sw.WriteLine("¤#NombreSymbole¤");
-
-				}
-
-
-
+				ElemBlocs.addTexteNoChangement(nomFichier);
 
             }
 			catch
@@ -118,8 +93,7 @@ namespace CreaBloc2
 			if (MessageBox.Show("Voulez-vous vraiment quitter", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 			{
 				string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+ @"\TempBloc";
-				File.Delete(path + @"\newBloc.xrb");
-				Directory.Delete(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TempBloc", "tempSelectedBloc.xrb"));
+				File.Delete(path + @"\newBloc.xrb");			
 				Application.Exit();
 			}
 		}
@@ -191,6 +165,7 @@ namespace CreaBloc2
 
 			if (MessageBox.Show("Voulez-vous vraiment sauvegarder", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 			{
+				int ok = 0;
 				//string dans le textbox pour le nom(référence) du bloc
 				string nomReference = textBox1.Text;
 
@@ -203,51 +178,87 @@ namespace CreaBloc2
 				//Emplacemenf fichier composant TEST
 				string composant = @"C:\Users\beaudonnelk\Documents\Test winrelais\";
 
-				for (int i =0; i< DataBloc.Rows.Count;i++)
-				{
-					var valeur = DataBloc.Rows[i].Cells[1].Value;
+                foreach (DataGridViewRow row in DataBloc.Rows)
+                {
+                    if (row.Cells[1].Value == null)
+                    {
+						ok++;
+                    }				
+                }
 
-					int nbrRows = DataBloc.Rows.Count; 
-					string composantSelect = composant + valeur + ".xrb";
-					var RepereValue = DataBloc.Rows[i].Cells[2].Value;
-					string unRepere ="" + RepereValue;
-					
-					if (i == 0)
-					{
-						ElemBlocs.addFirstBloc(path, composantSelect, nbrRows, unRepere);
+                if (ok > 0)
+                {
+                    MessageBox.Show("Une ligne possède un composant vide !", "Erreur");
+                }
+                else if (ok == 0)
+                {
+                    if (!File.Exists(path))
+                    {
+                        Application.Restart();
+                    }
+                    else
+                    {
+                        for (int i = 0; i < DataBloc.Rows.Count; i++)
+                        {
+                            var valeur = DataBloc.Rows[i].Cells[1].Value;
 
-					}
-					else
-					{
-						ElemBlocs.addBlock(path, composantSelect, unRepere, i);
-					}
-				}
+                            int nbrRows = DataBloc.Rows.Count;
+                            string composantSelect = composant + valeur + ".xrb";
+                            var RepereValue = DataBloc.Rows[i].Cells[2].Value;
+                            string unRepere = "" + RepereValue;
 
-				string finalPath = newPath + nomReference + ".xrb";
+                            if (i == 0)
+                            {
+                                ElemBlocs.addFirstBloc(path, composantSelect, nbrRows, unRepere);
 
-				//copie le fichier temp dans le bon dossier		
+                            }
+                            else
+                            {
+                                ElemBlocs.addBlock(path, composantSelect, unRepere, i);
+                            }
+                        }
 
-				if (File.Exists(finalPath))
-				{
-					MessageBox.Show("Le Bloc existe déjà","Erreur");
-				}
-				else
-				{
-				File.Copy(path, finalPath);
-				}
+                        string finalPath = newPath + nomReference + ".xrb";
 
-				
+                        //copie le fichier temp dans le bon dossier		
 
-			}
-		}
+                        if (File.Exists(finalPath))
+                        {
+                            MessageBox.Show("Le Bloc existe déjà", "Erreur", MessageBoxButtons.OK);
+                        }
+                        else
+                        {
+                            File.Copy(path, finalPath);
+							if (MessageBox.Show("Sauvegarde effectuée", "CreaBloc", MessageBoxButtons.OK)== DialogResult.OK)
+							{
+								DataBloc.Rows.Clear();
+								File.Delete(path);
+								ElemBlocs.addTexteNoChangement(path);
+							}
+							
+							
 
-		//----------------------------//
+                        }
+
+                    }
+
+                }
 
 
-		//--------MULTILANGUE--------//
 
-		//Fonction appelé pour changer la langue
-		private void ChangeLangue(string lang) 
+
+
+
+            }
+        }
+
+        //----------------------------//
+
+
+        //--------MULTILANGUE--------//
+
+        //Fonction appelé pour changer la langue
+        private void ChangeLangue(string lang) 
 		{
 			foreach (Control c in this.Controls)
 			{
@@ -255,6 +266,7 @@ namespace CreaBloc2
 				resources.ApplyResources(c, c.Name, new CultureInfo(lang));
 			}
 		}
+		
 
 		private void englishToolStripMenuItem_Click(object sender, EventArgs e)
 		{

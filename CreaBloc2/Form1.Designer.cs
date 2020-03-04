@@ -172,11 +172,6 @@ namespace CreaBloc2
             this.dBBlocsDataSet2.DataSetName = "DBBlocsDataSet";
             this.dBBlocsDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dBBlocsDataSet1
-            // 
-            this.dBBlocsDataSet1.DataSetName = "DBBlocsDataSet";
-            this.dBBlocsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // button6
             // 
             resources.ApplyResources(this.button6, "button6");
@@ -241,6 +236,7 @@ namespace CreaBloc2
             this.position.Name = "position";
             this.position.ReadOnly = true;
             this.position.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.position.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // référence
             // 
@@ -255,7 +251,10 @@ namespace CreaBloc2
             // Reprère
             // 
             resources.ApplyResources(this.Reprère, "Reprère");
+            this.Reprère.MaxInputLength = 4;
             this.Reprère.Name = "Reprère";
+            this.Reprère.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Reprère.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Form1
             // 

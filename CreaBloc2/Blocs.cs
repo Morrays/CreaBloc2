@@ -7,6 +7,9 @@ namespace CreaBloc2
     //classe des composants du bloc
     class ElemBlocs
     {
+
+
+        //Fonction calcule de largeur d'un bloc
         public static int LargeurBloc(String chemin)
         {
             int largeur = 0;
@@ -88,7 +91,7 @@ namespace CreaBloc2
             }
         }
 
-        //Ajoute la largeur choisi au bloc sélectionné
+        //Ajoute la largeur du bloc présedent au bloc sélectionné
         public static string[] addLargeur(int largeur, string selectedBloc, string repere, int numSymbole)
         {
             string ligne;
@@ -128,6 +131,7 @@ namespace CreaBloc2
                     {
                         if (ligne.StartsWith("¤#Symbole·0¤"))
                         {
+                            // remplace le numero du symbole (ex: si 2ème bloc alors la ligne sera égale a "¤#Symbole·1¤" )
                             ligne = "¤#Symbole·"+ numSymbole +"¤";
                        
                         }
@@ -383,6 +387,7 @@ namespace CreaBloc2
             }
         }
 
+        //Fonction qui ajoute les blocs unitaire supplémentaire (pas le premier bloc)
         public static void addBlock(string pathTemp, string selectedBloc, string repereChoix, int numSymbole)
         {
             int largeur = ElemBlocs.LargeurBloc(pathTemp);
@@ -402,7 +407,7 @@ namespace CreaBloc2
         }
 
 
-        // Copie les ligne du bloc choisi dans le nouveau bloc
+        // Fonction qui ajoute le premier bloc unitaire 
         public static void addFirstBloc(string pathTemp, string selectedBloc, int nbrSymboles, string repereBloc)
         {
             //Compte le nombre de ligne du fiche de base
@@ -432,7 +437,7 @@ namespace CreaBloc2
             }
         }
 
-        //Retourne un array de string comportant toutes les lignes du bloc slélectionné
+        //Retourne un array de string comportant toutes les lignes du bloc premier bloc
         public static string[] texteCopie(string path, int nbrSymbole, string unRepereBloc)
         {
             var texte = new List<string>();
@@ -454,11 +459,14 @@ namespace CreaBloc2
                     {
                         if (!(line.StartsWith("¤#FIN¤")))
                         {
+                            // ajoute le nombre totale de symboles 
                             if (compteurS == 0)
                             {
                                 line = nbrSymbole + "·";
                                 texte.Add(line);
                             }
+
+                            // Ajoute le repère choisi par l'utilisateur
                             else if(compteurS == 5)
                             {
                                 string[] spliter = line.Split('·');
@@ -479,6 +487,36 @@ namespace CreaBloc2
                 texte.Add("¤#FIN¤");
                 string[] res = texte.ToArray();
                 return res;
+            }
+
+        }
+
+        public static void addTexteNoChangement(string path)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            else
+            {
+
+                using (FileStream fs = File.Create(path))
+                {
+
+                }
+
+                using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.GetEncoding(1252)))
+                {
+                    sw.WriteLine("<< Schéma WinRelais [Bloc] >>");
+                    sw.WriteLine("¤#Version");
+                    sw.WriteLine("2·2·");
+                    sw.WriteLine("EYNARD Pascal·Ingerea·");
+                    sw.WriteLine("Version 2.2a Premium·");
+                    sw.WriteLine("¤#PMilieu¤");
+                    sw.WriteLine("4400·10000");
+                    sw.WriteLine("¤#NombreSymbole¤");
+
+                }
             }
 
         }

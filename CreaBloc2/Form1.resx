@@ -316,7 +316,7 @@
     <value>Position</value>
   </data>
   <data name="position.Width" type="System.Int32, mscorlib">
-    <value>69</value>
+    <value>50</value>
   </data>
   <metadata name="référence.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -337,7 +337,7 @@
     <value>Reprère</value>
   </data>
   <data name="Reprère.Width" type="System.Int32, mscorlib">
-    <value>70</value>
+    <value>51</value>
   </data>
   <data name="DataBloc.Location" type="System.Drawing.Point, System.Drawing">
     <value>26, 55</value>
