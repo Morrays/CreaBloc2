@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace CreaBloc2
 {
@@ -101,9 +106,9 @@ namespace CreaBloc2
             int arc = 0;
             int n = 0;
             int vA = 0;
-            int refe = 0; 
+            int refe = 0;
 
-            string tempSelectBloc = @"C:\Users\beaudonnelk\Documents\TempBloc\blocSelected\tempSelectedBloc.xrb";
+            string tempSelectBloc = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TempBloc\blocSelected\tempSelectedBloc.xrb";
             string[] finalTempBloc;
             List<string> s = new List<string>();
 
@@ -132,15 +137,15 @@ namespace CreaBloc2
                         if (ligne.StartsWith("¤#Symbole·0¤"))
                         {
                             // remplace le numero du symbole (ex: si 2ème bloc alors la ligne sera égale a "¤#Symbole·1¤" )
-                            ligne = "¤#Symbole·"+ numSymbole +"¤";
-                       
+                            ligne = "¤#Symbole·" + numSymbole + "¤";
+
                         }
-                        if ((c == 0) & (arc == 0)& (refe ==0) & (vA == 0))
+                        if ((c == 0) & (arc == 0) & (refe == 0) & (vA == 0))
                         {
                             if (ligne.StartsWith("¤#Autre¤"))
                             {
                                 a = 1;
-                               
+
 
                             }
                             else if (a == 1)
@@ -169,7 +174,7 @@ namespace CreaBloc2
                                             splitAutre[0] = Convert.ToString(coordA1);
 
                                             ligne = String.Join("·", splitAutre);
-                                        
+
 
                                         }
                                         else if (j == 2)
@@ -184,12 +189,12 @@ namespace CreaBloc2
                                             {
                                                 coordA22 = coA2;
                                             }
-                                            coordA22 += largeur;                                            
+                                            coordA22 += largeur;
                                             splitAutre2[0] = repere;
                                             splitAutre2[1] = Convert.ToString(coordA22);
 
                                             ligne = String.Join("·", splitAutre2);
-                                        }                                        
+                                        }
                                         else if (j >= 3)
                                         {
                                             string[] splitAutre3 = ligne.Split('·');
@@ -207,10 +212,10 @@ namespace CreaBloc2
                                             splitAutre3[1] = Convert.ToString(coordA33);
 
                                             ligne = String.Join("·", splitAutre3);
-                                          
+
 
                                         }
-                                        
+
 
 
                                     }
@@ -220,13 +225,13 @@ namespace CreaBloc2
                                 else { a = 2; }
                             }
                         }
-                        if ((a >= 2) & (arc == 0) & (refe == 0) &(vA == 0))
+                        if ((a >= 2) & (arc == 0) & (refe == 0) & (vA == 0))
                         {
 
                             if (ligne.StartsWith("¤#Contour¤"))
                             {
                                 c = 1;
-                              
+
                             }
                             else if (c == 1)
                             {
@@ -268,12 +273,12 @@ namespace CreaBloc2
                             }
                         }
 
-                        if ((c >= 2) & (a >= 2) & (refe ==0 ) &(vA == 0))
+                        if ((c >= 2) & (a >= 2) & (refe == 0) & (vA == 0))
                         {
                             if (ligne.StartsWith("¤#Arc¤"))
                             {
                                 arc = 1;
-                               
+
                             }
                             else if (arc == 1)
                             {
@@ -294,14 +299,14 @@ namespace CreaBloc2
                                     splitArc[0] = Convert.ToString(coordArc);
                                     ligne = String.Join("·", splitArc);
 
-                                    
 
-                                  
+
+
                                 }
                                 else { arc = 2; }
                             }
                         }
-                        if ((c >= 2) & (a >= 2) & (arc >= 0)&(vA == 0 ))
+                        if ((c >= 2) & (a >= 2) & (arc >= 0) & (vA == 0))
                         {
                             if (ligne.StartsWith("¤#RefCroise¤"))
                             {
@@ -331,7 +336,7 @@ namespace CreaBloc2
 
 
                                 }
-                                else { refe = 2; }
+                                else { refe = 2; }                               
                             }
                         }
 
@@ -340,7 +345,7 @@ namespace CreaBloc2
                             if (ligne.StartsWith("¤#VueArmoire¤"))
                             {
                                 vA = 1;
-                                
+
                             }
                             else if (vA == 1)
                             {
@@ -366,15 +371,15 @@ namespace CreaBloc2
                                             splitArmoire[1] = Convert.ToString(coordArmoire1);
 
                                             ligne = String.Join("·", splitArmoire);
-                                           
+
                                         }
-                                       
+
                                     }
                                     n++;
                                 }
                                 else { vA = 2; }
 
-                            }    
+                            }
                         }
                         s.Add(ligne);
                     }
@@ -453,7 +458,7 @@ namespace CreaBloc2
                     if (line.StartsWith("¤#NombreSymbole¤"))
                     {
                         i = 1;
-                        
+
                     }
                     else if (i == 1)
                     {
@@ -467,7 +472,7 @@ namespace CreaBloc2
                             }
 
                             // Ajoute le repère choisi par l'utilisateur
-                            else if(compteurS == 5)
+                            else if (compteurS == 5)
                             {
                                 string[] spliter = line.Split('·');
 
@@ -477,7 +482,7 @@ namespace CreaBloc2
                             }
                             else
                             {
-                            texte.Add(line);
+                                texte.Add(line);
                             }
                             compteurS++;
                         }
@@ -497,7 +502,7 @@ namespace CreaBloc2
             {
                 File.Delete(path);
             }
-            else
+            if (!File.Exists(path))
             {
 
                 using (FileStream fs = File.Create(path))
@@ -521,7 +526,87 @@ namespace CreaBloc2
 
         }
 
+        //fonction requête database
+        public static void requeteInsert(string requestSQL)
+        {
+            OleDbConnection cnn;
+            OleDbCommand cmd;
+
+            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\beaudonnelk\Documents\DBBlocs.accdb;"))
+            {
+                using (cmd = new OleDbCommand(requestSQL, cnn))
+                {
+                    cnn.Open();
+
+                    //Execute la requête
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
+        //requete avec une seule colone en return
+        public static string[] requeteSelect(string requete)
+        {
+            OleDbConnection cnn;
+            OleDbCommand cmd;
+            DataTable result = new DataTable();
+            
+
+            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\beaudonnelk\Documents\DBBlocs.accdb;"))
+            {
+                using (cmd = new OleDbCommand(requete, cnn))
+                {
+                    using (OleDbDataAdapter dataAdapter = new OleDbDataAdapter(cmd))
+                    {
+                        dataAdapter.Fill(result);
+                    }
+                }
+            }
+            int columnIndex = 0;
+            string[] array = new string[result.Rows.Count];
+            for (int i = 0; i < result.Rows.Count; i++)
+            {
+                array[i] = result.Rows[i][columnIndex].ToString();
+            }
+
+            return array;
+        }
+
+        //requete avec plusieurs cologne en return
+        public static DataTable requeteSelectMult(string requete)
+        {
+            OleDbConnection cnn;
+            OleDbCommand cmd;
+            DataTable dt = new DataTable();
+
+            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\beaudonnelk\Documents\DBBlocs.accdb;"))
+            {
+                using (cmd = new OleDbCommand(requete, cnn))
+                {
+                    cnn.Open();
+                    using (OleDbDataReader dr = cmd.ExecuteReader())
+                    {
+                        dt.Load(dr);
+                    }
+                    return dt;
+                }
+            }
+        }
+
+
+        public static string ConvertStringArrayToString(string[] array)
+        {
+            // Concatenate all the elements into a StringBuilder.
+            StringBuilder builder = new StringBuilder();
+            foreach (string value in array)
+            {
+                builder.Append(value);
+            }
+            return builder.ToString();
+        }
     }
 }
+
             
    

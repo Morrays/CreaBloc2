@@ -45,5 +45,29 @@ namespace CreaBloc2.Properties {
                 this["langue"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\beaudonnelk\\Documents\\Test winrelais")]
+        public string blocUnitaire {
+            get {
+                return ((string)(this["blocUnitaire"]));
+            }
+            set {
+                this["blocUnitaire"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("S:\\BE\\ELECTRONIQUE\\6-Outils\\GenS4\\Blocs\\BlocsBornesAuto")]
+        public string blocFinale {
+            get {
+                return ((string)(this["blocFinale"]));
+            }
+            set {
+                this["blocFinale"] = value;
+            }
+        }
     }
 }

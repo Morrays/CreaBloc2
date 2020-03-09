@@ -2,40 +2,60 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
 namespace CreaBloc2
 {
 	public partial class Form1 : Form
-	{
-		public string language = Properties.Settings.Default.langue;   //Public String language to read the saved language settings
+	{																	
+		public string language = Properties.Settings.Default.langue;  // string public pour lire la langue sauvegarder en paramètre 
 		public Form1()
 		{
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(language); //Launch the Form with the default/selected language
 			InitializeComponent();
 		}
-		
+
 		public int i = 0;
 
 		//--------FormLoad--------//
 		private void Form1_Load(object sender, EventArgs e)
 		{
+
 			// TODO: This line of code loads data into the 'dBBlocsDataSet2.Composants' table. You can move, or remove it, as needed.
 			this.composantsTableAdapter1.Fill(this.dBBlocsDataSet2.Composants);
 
 
-			//Crée un fichier txt
-			Directory.CreateDirectory(@"C:\Users\beaudonnelk\Documents\TempBloc\blocSelected");
-			
+
+			string requete = "select Désignation from TypeBloc";
+			string[] resType = ElemBlocs.requeteSelect(requete);
+			foreach (string type in resType)
+			{
+				cbType.Items.Add(type);
+			}
+
+			string requete2 = "select DescBloc from GroupesBornes";
+			string[] resGrp = ElemBlocs.requeteSelect(requete2);
+
+			foreach (string grp in resGrp)
+			{
+				cbGroupe.Items.Add(grp);
+			}
+
+			string requete3 = "select Description from TypeCoffret";
+			string[] resCof = ElemBlocs.requeteSelect(requete3);
+			foreach (string coffret in resCof)
+			{
+				cbCoffret.Items.Add(coffret);
+			}
+
+			//Crée le dossier temporaire 
+			Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TempBloc\blocSelected");
+
 
 			//Emplacement du fichier temporaire
 			string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -50,14 +70,11 @@ namespace CreaBloc2
 			{
 				ElemBlocs.addTexteNoChangement(nomFichier);
 
-            }
+			}
 			catch
 			{
 				MessageBox.Show("Erreur dans la création du fichier");
 			}
-
-
-
 		}
 
 		//-----------------------//
@@ -92,8 +109,11 @@ namespace CreaBloc2
 		{
 			if (MessageBox.Show("Voulez-vous vraiment quitter", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 			{
-				string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+ @"\TempBloc";
-				File.Delete(path + @"\newBloc.xrb");			
+				string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TempBloc";
+
+				//suppresion dossier et fichier temporaire
+				File.Delete(path + @"\newBloc.xrb");
+				Directory.Delete(path + @"\blocSelected", true);
 				Application.Exit();
 			}
 		}
@@ -101,38 +121,114 @@ namespace CreaBloc2
 		//Trigger boutton Annuler
 		private void button4_Click(object sender, EventArgs e)
 		{
+			// réinitialisation des champs
+			cbType.Text = null;
+			cbGroupe.Text = null;
+			cbCoffret.Text = null;
+			textBox2.Text = null;
+			textBox3.Text = null;
 			DataBloc.Rows.Clear();
 		}
 
 		//Trigger Boutton Ouvrir Fichier
 		private void button6_Click(object sender, EventArgs e)
 		{
-			int size = -1;
 			DialogResult result = openFileDialog1.ShowDialog(); // Ouvre la selection de fichier
 			if (result == DialogResult.OK)
 			{
+				//récupère le chemin du fichier selectionné
 				string file = openFileDialog1.FileName;
-				try
+				string[] file1 = file.Split('\\');
+				file = file1[7].ToString();
+				file = file.Replace(".xrb", "");
+				DataBloc.Rows.Clear();
+
+				//Remplissage des champs
+				//Recupère la valeur de DescBloc en fonction bloc choisi
+				string query = "select DescBloc From GroupesBornes, Generalites where Generalites.GroupeBorne = GroupesBornes.BlocBorne and Generalites.Clé ='" + file + "';";
+				string[] grpBorne = ElemBlocs.requeteSelect(query);
+				//Change le texte du combobox
+				cbGroupe.Text = grpBorne[0].ToString();
+
+				//Recupère la valeur de DescBloc en fonction du bloc choisi
+				string query2 = "Select Coffret from Generalites where Clé='" + file + "';";
+				string[] coffret = ElemBlocs.requeteSelect(query2);
+				cbCoffret.Text = coffret[0].ToString();
+
+				//Recupère la valeur de description en fonction du bloc choisi
+				string query3 = "Select description from Generalites where Clé ='" + file + "';";
+				string[] desc = ElemBlocs.requeteSelect(query3);
+				textBox2.Text = desc[0].ToString();
+
+				//Recupère la valeur de commentaire en fonction du bloc choisi 
+				string query4 = "Select commentaire from Generalites where Clé ='" + file + "';";
+				string[] com = ElemBlocs.requeteSelect(query4);
+				textBox3.Text = com[0].ToString();
+
+
+				string type = file.Substring(2, 3);
+				string query5 = "select Désignation From TypeBloc where BlocType ='" + type + "';";
+				string[] typeA = ElemBlocs.requeteSelect(query5);
+				cbType.Text = typeA[0].ToString();
+
+
+				string requete = "select * from elemBloc where refBloc ='" + file + "'";
+
+				DataTable resultdt = ElemBlocs.requeteSelectMult(requete);
+				List<string> rows = new List<string>();
+
+				foreach (DataRow dataRow in resultdt.Rows)
 				{
-					string text = File.ReadAllText(file);
-					size = text.Length;
+					rows.Add(string.Join(";", dataRow.ItemArray.Select(item => item.ToString())));
 				}
-				catch (IOException)
+				string[] resultat = rows.ToArray();
+
+
+				//Remplisage des ligne dans le datagridview
+				int compteur = 0;
+				foreach (string s in resultat)
 				{
+					DataBloc.Rows.Add();
+					string res = resultat[compteur];
+					DataBloc.Rows[compteur].Cells[1].Value = resultat[compteur].Split(';')[1];
+					DataBloc.Rows[compteur].Cells[2].Value = resultat[compteur].Split(';')[3];
+
+
+					compteur++;
 				}
 			}
-			Console.WriteLine(size); //Affiche la taille du fichier en mode debug (console)
-			Console.WriteLine(result);
 		}
 
 		//-----------------------------//
 
+
 		//--------Datagridview--------//
 
-		// Affiche la position de chaque rangée dans le datagridview a chaque ajout de rangée
+		// Action effectué quand une ligne est ajoutée
 		private void DataBloc_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
 		{
+			//Remplissage comboBox avec prise en compte de l'obsolescence
+			string requete = "select Réferences from Composants where obsolescence = false";
 
+			string[] fin = ElemBlocs.requeteSelect(requete);
+
+
+
+			BindingList<string> list = new BindingList<string>();
+
+			//ajout de chaque string dans le string array a la bindingList
+			foreach (string s in fin)
+			{
+				list.Add(s);
+			}
+
+			//Lie la Bindinglist au ComboBox
+			DataGridViewComboBoxCell box = DataBloc.Rows[e.RowIndex].Cells[1] as DataGridViewComboBoxCell;
+			box.DataSource = list;
+
+			///////////////////////
+
+			//Position automatique
 			i = 0;
 			while (i < DataBloc.Rows.Count)
 			{
@@ -151,7 +247,6 @@ namespace CreaBloc2
 				i++;
 
 			}
-
 		}
 
 		//------------------------------//
@@ -166,99 +261,175 @@ namespace CreaBloc2
 			if (MessageBox.Show("Voulez-vous vraiment sauvegarder", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 			{
 				int ok = 0;
-				//string dans le textbox pour le nom(référence) du bloc
-				string nomReference = textBox1.Text;
 
 				//Emplacement fichier temporaire
-				string path = @"C:\Users\beaudonnelk\Documents\TempBloc\newBloc.xrb";
+				string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TempBloc\newBloc.xrb";
 
 				//Emplacement fichier sauvegarder 
-				string newPath = @"S:\BE\ELECTRONIQUE\6-Outils\GenS4\Blocs\BlocsBornesAuto\";
+				string newPath = Properties.Settings.Default.blocFinale.ToString();
 
-				//Emplacemenf fichier composant TEST
-				string composant = @"C:\Users\beaudonnelk\Documents\Test winrelais\";
+				//Emplacemenf fichier composant 
+				string composant = Properties.Settings.Default.blocUnitaire.ToString();
 
-                foreach (DataGridViewRow row in DataBloc.Rows)
-                {
-                    if (row.Cells[1].Value == null)
-                    {
-						ok++;
-                    }				
-                }
 
-                if (ok > 0)
-                {
-                    MessageBox.Show("Une ligne possède un composant vide !", "Erreur");
-                }
-                else if (ok == 0)
-                {
-                    if (!File.Exists(path))
-                    {
-                        Application.Restart();
-                    }
-                    else
-                    {
-                        for (int i = 0; i < DataBloc.Rows.Count; i++)
-                        {
-                            var valeur = DataBloc.Rows[i].Cells[1].Value;
 
-                            int nbrRows = DataBloc.Rows.Count;
-                            string composantSelect = composant + valeur + ".xrb";
-                            var RepereValue = DataBloc.Rows[i].Cells[2].Value;
-                            string unRepere = "" + RepereValue;
+				string requeteType = "select BlocType from TypeBloc where Désignation ='" + cbType.Text.ToString() + "'";
+				string[] typeA = ElemBlocs.requeteSelect(requeteType);
+				string type = ElemBlocs.ConvertStringArrayToString(typeA);
 
-                            if (i == 0)
-                            {
-                                ElemBlocs.addFirstBloc(path, composantSelect, nbrRows, unRepere);
+				string requeteGroupe = "select FonctionBloc from GroupesBornes where DescBloc ='" + cbGroupe.Text.ToString() + "'";
+				string[] grpA = ElemBlocs.requeteSelect(requeteGroupe);
+				string grp = ElemBlocs.ConvertStringArrayToString(grpA);
 
-                            }
-                            else
-                            {
-                                ElemBlocs.addBlock(path, composantSelect, unRepere, i);
-                            }
-                        }
+				int compteurFichier = 0;
+				string[] files = Directory.GetFiles(newPath);
+				string startW = newPath + @"\EB" + type + grp;
+				for (int i = 0; i < files.Length; i++)
+				{
 
-                        string finalPath = newPath + nomReference + ".xrb";
+					if (files[i].StartsWith(startW))
+					{
+						compteurFichier++;
+					}
+				}
 
-                        //copie le fichier temp dans le bon dossier		
+				compteurFichier++;
+				string nomRef = "EB" + type + grp;
+				string nomReference = nomRef + String.Format("{0:0000}", +compteurFichier);
+				string descrition = textBox2.Text.ToString();
+				string commentaire = textBox3.Text.ToString();
 
-                        if (File.Exists(finalPath))
-                        {
-                            MessageBox.Show("Le Bloc existe déjà", "Erreur", MessageBoxButtons.OK);
-                        }
-                        else
-                        {
-                            File.Copy(path, finalPath);
-							if (MessageBox.Show("Sauvegarde effectuée", "CreaBloc", MessageBoxButtons.OK)== DialogResult.OK)
+				if (cbType.Text == "" || cbGroupe.Text == "" || cbCoffret.Text == "")
+				{
+					MessageBox.Show("Une valeur n'est pas choisi");
+				}
+				else
+				{
+					foreach (DataGridViewRow row in DataBloc.Rows)
+					{
+						if (row.Cells[1].Value == null)
+						{
+							ok++;
+						}
+					}
+
+					if (ok > 0)
+					{
+						MessageBox.Show("Une ligne possède un composant vide !", "Erreur");
+					}
+					else if (ok == 0)
+					{
+						for (int i = 0; i < DataBloc.Rows.Count; i++)
+						{
+							var valeur = DataBloc.Rows[i].Cells[1].Value;
+
+							int nbrRows = DataBloc.Rows.Count;
+							string composantSelect = composant + @"\" + valeur + ".xrb";
+							if (!File.Exists(composantSelect))
 							{
-								DataBloc.Rows.Clear();
-								File.Delete(path);
-								ElemBlocs.addTexteNoChangement(path);
+								MessageBox.Show("Dossier selectionner ne comporte pas de fichier composant", "Erreur");
 							}
-							
-							
+							else
+							{
+								var RepereValue = DataBloc.Rows[i].Cells[2].Value;
+								string unRepere = "" + RepereValue;
 
-                        }
+								if (i == 0)
+								{
+									ElemBlocs.addFirstBloc(path, composantSelect, nbrRows, unRepere);
 
-                    }
+								}
+								else
+								{
+									ElemBlocs.addBlock(path, composantSelect, unRepere, i);
+								}
 
-                }
+							}
+						}
+						string finalPath = newPath + @"\" + nomReference + ".xrb";
 
-
-
-
-
-
-            }
-        }
-
-        //----------------------------//
+						//copie le fichier temp dans le bon dossier		
 
 
-        //--------MULTILANGUE--------//
+						File.Copy(path, finalPath);
 
-        //Fonction appelé pour changer la langue
-        private void ChangeLangue(string lang) 
+						if (MessageBox.Show("Sauvegarde effectuée", "CreaBloc", MessageBoxButtons.OK) == DialogResult.OK)
+						{
+							foreach (DataGridViewRow row in DataBloc.Rows)
+							{
+								if (row.Cells[2].Value == null)
+								{
+									string reqs = "Insert Into elemBloc (refBloc, [position], refComposant, repère) Values ('" + nomReference + "', '" + row.Cells[0].Value.ToString() + "', '" + row.Cells[1].Value.ToString() + "', '')";
+									ElemBlocs.requeteInsert(reqs);
+								}
+								else
+								{
+									string req = "Insert Into elemBloc (refBloc, [position], refComposant, repère) Values ('" + nomReference + "', '" + row.Cells[0].Value.ToString() + "', '" + row.Cells[1].Value.ToString() + "', '" + row.Cells[2].Value.ToString() + "')";
+									ElemBlocs.requeteInsert(req);
+								}
+							}
+
+							int largeurBloc = ElemBlocs.LargeurBloc(finalPath);
+
+
+
+
+
+							File.Delete(path);
+							ElemBlocs.addTexteNoChangement(path);
+
+							//requete pour avoir BlocBorne 
+							string requeteGrpBorne = "select BlocBorne from GroupesBornes where DescBloc ='" + cbGroupe.Text.ToString() + "';";
+							string[] grpBorne = ElemBlocs.requeteSelect(requeteGrpBorne);
+							string blocBorne = ElemBlocs.ConvertStringArrayToString(grpBorne);
+
+							//requete final
+							if (textBox2.Text == null)
+							{
+								string sqlD = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','', '" + commentaire + "', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
+								ElemBlocs.requeteInsert(sqlD);
+							}
+							else if (textBox3.Text == null)
+							{
+								string sqlC = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','" + descrition + "', '', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
+								ElemBlocs.requeteInsert(sqlC);
+							}
+							else if (textBox2.Text == null && textBox3.Text == null)
+							{
+								string sqlDC = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','', '', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
+								ElemBlocs.requeteInsert(sqlDC);
+							}
+							else
+							{
+								string sql = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','" + descrition + "', '" + commentaire + "', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
+								ElemBlocs.requeteInsert(sql);
+
+							}
+
+							//Réinitialisation
+							DataBloc.Rows.Clear();
+							cbType.Text = null;
+							cbGroupe.Text = null;
+							cbCoffret.Text = null;
+							textBox2.Text = null;
+							textBox3.Text = null;
+
+						}
+					}
+				}
+			}
+		}
+
+
+
+
+		//----------------------------//
+
+
+		//--------MULTILANGUE--------//
+
+		//Fonction appelé pour changer la langue
+		private void ChangeLangue(string lang)
 		{
 			foreach (Control c in this.Controls)
 			{
@@ -266,7 +437,7 @@ namespace CreaBloc2
 				resources.ApplyResources(c, c.Name, new CultureInfo(lang));
 			}
 		}
-		
+
 
 		private void englishToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -297,22 +468,80 @@ namespace CreaBloc2
 			{
 				if (MessageBox.Show("Restart required \r\n \r\nRedémarrage requis", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
 				{
-				//Change la langue en français
-				language = "en-US";
-				englishToolStripMenuItem.Checked = false;
-				françaisToolStripMenuItem.Checked = true;
+					//Change la langue en français
+					language = "en-US";
+					englishToolStripMenuItem.Checked = false;
+					françaisToolStripMenuItem.Checked = true;
 
-				Properties.Settings.Default.langue = "fr-FR";
-				Properties.Settings.Default.Save();
+					Properties.Settings.Default.langue = "fr-FR";
+					Properties.Settings.Default.Save();
 
-				Application.Restart();
+					Application.Restart();
+				}
+			}
+		}
+		//------------------------------------//
+
+
+		//--------Changement de dossier--------//
+
+
+		//Changement de l'emplacement des blocs unitaires
+		private void blocUnitaireToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			//ouvre une fenetre de selection de dossier
+			using (var fbd = new FolderBrowserDialog())
+			{
+
+				fbd.Description = "Choisir le dossier ou se trouve les blocs unitaires: ";
+				string dossierChemin = "";
+				if (fbd.ShowDialog() == DialogResult.OK)
+				{
+					if (MessageBox.Show("Redémarrage requis", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+					{
+						//chemin du dossier selectionner
+						dossierChemin = fbd.SelectedPath;
+
+						//change le chemin avec celui selectionné dans les paramètres
+						Properties.Settings.Default.blocUnitaire = dossierChemin;
+
+						//Sauvegarde des paramètres
+						Properties.Settings.Default.Save();
+						Application.Restart();
+					}
 				}
 			}
 		}
 
+
+		//Changement du l'emplacement de sauvegarde des blocs 
+		private void blocFinalToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+			using (var fbdF = new FolderBrowserDialog())
+			{
+				if (Properties.Settings.Default.langue == "fr-FR")
+				{
+					fbdF.Description = "Choisir le dossier de sauvgarde: ";
+					string dossierCheminF = "";
+					if (fbdF.ShowDialog() == DialogResult.OK)
+					{
+						if (MessageBox.Show("Redémarrage requis\r\n \r\nRestart required ", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+						{
+							dossierCheminF = fbdF.SelectedPath;
+							Properties.Settings.Default.blocFinale = dossierCheminF;
+							Properties.Settings.Default.Save();
+							Application.Restart();
+						}
+					}
+				}
+			}
+		}
+		//------------------------------//
 	}
-
-	//------------------------------//
-
 }
+
+	
+
+
 

@@ -13,5 +13,11 @@
     <Setting Name="langue" Type="System.String" Scope="User">
       <Value Profile="(Default)">en-US</Value>
     </Setting>
+    <Setting Name="blocUnitaire" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\beaudonnelk\Documents\Test winrelais</Value>
+    </Setting>
+    <Setting Name="blocFinale" Type="System.String" Scope="User">
+      <Value Profile="(Default)">S:\BE\ELECTRONIQUE\6-Outils\GenS4\Blocs\BlocsBornesAuto</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
