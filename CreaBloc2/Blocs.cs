@@ -14,7 +14,12 @@ namespace CreaBloc2
     {
 
 
-        //Fonction calcule de largeur d'un bloc
+        /// <summary>
+        /// Fonction calcule de largeur d'un bloc
+        /// a partir d'un fichier
+        /// </summary>
+        /// <param name="chemin"></param>
+        /// <returns> Retourne la largeur d'un bloc</returns>
         public static int LargeurBloc(String chemin)
         {
             int largeur = 0;
@@ -96,7 +101,15 @@ namespace CreaBloc2
             }
         }
 
-        //Ajoute la largeur du bloc présedent au bloc sélectionné
+        /// <summary>
+        /// Ajoute la largeur du bloc présedent au bloc sélectionné
+        /// </summary>
+        /// <param name="largeur"></param>
+        /// <param name="selectedBloc"></param>
+        /// <param name="repere"></param>
+        /// <param name="numSymbole"></param>
+        /// <returns>Retourne un array de string comportant les lignes 
+        /// avec l'ajout de la largeur aux coordonnées</returns>
         public static string[] addLargeur(int largeur, string selectedBloc, string repere, int numSymbole)
         {
             string ligne;
@@ -392,7 +405,13 @@ namespace CreaBloc2
             }
         }
 
-        //Fonction qui ajoute les blocs unitaire supplémentaire (pas le premier bloc)
+        /// <summary>
+        /// Fonction qui ajoute les blocs unitaire supplémentaire (pas le premier bloc)
+        /// </summary>
+        /// <param name="pathTemp"></param>
+        /// <param name="selectedBloc"></param>
+        /// <param name="repereChoix"></param>
+        /// <param name="numSymbole"></param>
         public static void addBlock(string pathTemp, string selectedBloc, string repereChoix, int numSymbole)
         {
             int largeur = ElemBlocs.LargeurBloc(pathTemp);
@@ -412,7 +431,14 @@ namespace CreaBloc2
         }
 
 
-        // Fonction qui ajoute le premier bloc unitaire 
+        /// <summary>
+        /// Fonction qui ajoute le premier bloc unitaire
+        /// car pas de changement de coordonnée
+        /// </summary>
+        /// <param name="pathTemp"></param>
+        /// <param name="selectedBloc"></param>
+        /// <param name="nbrSymboles"></param>
+        /// <param name="repereBloc"></param>
         public static void addFirstBloc(string pathTemp, string selectedBloc, int nbrSymboles, string repereBloc)
         {
             //Compte le nombre de ligne du fiche de base
@@ -442,7 +468,15 @@ namespace CreaBloc2
             }
         }
 
-        //Retourne un array de string comportant toutes les lignes du bloc premier bloc
+        /// <summary>
+        /// Fonction qui prend en paramètre le chemin du bloc selectionné, le nombre totale de symbole (de bloc unitaires)
+        /// et le repère du premier bloc (définie par l'utilisateur dans le datagridview)
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="nbrSymbole"></param>
+        /// <param name="unRepereBloc"></param>
+        /// <returns>Retourne un array de string comportant toutes les lignes du fichier avec les changemaent au 
+        /// niveau du repère et du nombre de symbole</returns>
         public static string[] texteCopie(string path, int nbrSymbole, string unRepereBloc)
         {
             var texte = new List<string>();
@@ -496,6 +530,11 @@ namespace CreaBloc2
 
         }
 
+        /// <summary>
+        /// Fonction qui permet d'ajouter les lignes 
+        /// qui ne changent jamais au début du fichier
+        /// </summary>
+        /// <param name="path"></param>
         public static void addTexteNoChangement(string path)
         {
             if (File.Exists(path))
@@ -526,7 +565,11 @@ namespace CreaBloc2
 
         }
 
-        //fonction requête database
+        /// <summary>
+        /// fonction requête Insert database
+        /// Insert dans la DB selon la requete en paramètre
+        /// </summary>
+        /// <param name="requestSQL"></param>
         public static void requeteInsert(string requestSQL)
         {
             OleDbConnection cnn;
@@ -545,7 +588,11 @@ namespace CreaBloc2
 
         }
 
-        //requete avec une seule colone en return
+        /// <summary>
+        /// requete select avec une seule colone en return
+        /// </summary>
+        /// <param name="requete"></param>
+        /// <returns></returns>
         public static string[] requeteSelect(string requete)
         {
             OleDbConnection cnn;
@@ -574,7 +621,11 @@ namespace CreaBloc2
             return array;
         }
 
-        //requete avec plusieurs cologne en return
+        /// <summary>
+        /// requete select avec plusieurs cologne en return
+        /// </summary>
+        /// <param name="requete"></param>
+        /// <returns>Return une datatable </returns>
         public static DataTable requeteSelectMult(string requete)
         {
             OleDbConnection cnn;
@@ -595,7 +646,11 @@ namespace CreaBloc2
             }
         }
 
-
+        /// <summary>
+        /// Fonction qui permet de convertir un array de string en string
+        /// </summary>
+        /// <param name="array"></param>
+        /// <returns>return un string contenant tous les string contenues dans l'array</returns>
         public static string ConvertStringArrayToString(string[] array)
         {
             // Concatenate all the elements into a StringBuilder.

@@ -23,6 +23,11 @@ namespace CreaBloc2
 		public int i = 0;
 
 		//--------FORMLOAD--------//
+		/// <summary>
+		/// Action effectué au chargement du formulaire
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			string requete = "select Désignation from TypeBloc order by Désignation";
@@ -75,7 +80,11 @@ namespace CreaBloc2
 
 		//--------BOUTON--------//
 
-		//Trigger Boutton Insertion de ligne dans le dataGridView
+		/// <summary>
+		/// Trigger Boutton Insertion de ligne dans le dataGridView
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button1_Click(object sender, EventArgs e)
 		{
 			//si il y a au moins une ligne et une ligne selectionné ajoute au dessus de la ligne selectionné
@@ -92,7 +101,12 @@ namespace CreaBloc2
 			
 		}
 
-		//Trigger Boutton Supprimer Ligne dans le dataGridView
+		/// <summary>
+		/// Trigger Boutton Supprimer Ligne
+		/// Supprime une ligne selectionné dans le datagridview
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button2_Click_1(object sender, EventArgs e)
 		{
 
@@ -109,7 +123,11 @@ namespace CreaBloc2
 			}
 		}
 
-		//Trigger Button pour quitter
+		/// <summary>
+		/// Trigger Button pour quitter
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button5_Click(object sender, EventArgs e)
 		{
 			if (MessageBox.Show("Voulez-vous vraiment quitter", " Creabloc ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
@@ -123,7 +141,13 @@ namespace CreaBloc2
 			}
 		}
 
-		//Trigger boutton Annuler
+		/// <summary>
+		/// Trigger boutton Annuler
+		/// Suppression de toutes les lignes, liste déroulantes 
+		/// et textbox du formulaire 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button4_Click(object sender, EventArgs e)
 		{
 			// réinitialisation des champs
@@ -135,7 +159,14 @@ namespace CreaBloc2
 			DataBloc.Rows.Clear();
 		}
 
-		//Trigger Boutton Ouvrir Fichier
+		/// <summary>
+		/// Trigger Boutton Ouvrir Fichier
+		/// Ouvre un pop-up de selection de fichier
+		/// afin de chargé un bloc deja enregistrer 
+		/// et de pouvoir le modifier
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button6_Click(object sender, EventArgs e)
 		{
 			DialogResult result = openFileDialog1.ShowDialog(); // Ouvre la selection de fichier
@@ -209,7 +240,14 @@ namespace CreaBloc2
 
 		//--------DATAGRIDVIEW--------//
 
-		// Action effectué quand une ligne est ajoutée
+		/// <summary>
+		/// Action effectué quand une ligne est ajoutée
+		/// Permet de chargé la liste des blocs unitaire
+		/// avec prise en compte de l'obsolescence
+		/// et affichage de la position automatiquement
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void DataBloc_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
 		{
 			//Remplissage comboBox avec prise en compte de l'obsolescence
@@ -242,7 +280,12 @@ namespace CreaBloc2
 			}
 		}
 
-		//Affiche la position de chaque rangée dans le datagridview a chaque suppression de rangée
+		/// <summary>
+		/// Actualise la position de chaque rangée dans 
+		/// le datagridview a chaque suppression de ligne
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void DataBloc_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
 		{
 			i = 0;
@@ -259,7 +302,14 @@ namespace CreaBloc2
 
 		//--------AJOUT DE BLOC--------//
 
-		//Enregistrement du bloc 
+		/// <summary>
+		/// Enregistrement du bloc 
+		/// Permet la gération et sauvvegarde
+		/// du fichier xrb, fait appèle aux
+		/// fonction présente dans Blocs.cs
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void button3_Click(object sender, EventArgs e)
 		{
 
@@ -433,7 +483,11 @@ namespace CreaBloc2
 
 		//--------MULTILANGUE--------//
 
-		//Fonction appelé pour changer la langue
+		/// <summary>
+		/// Fonction appelé pour changer la langue
+		/// avec sauvegarde dans les paramètres généraux
+		/// </summary>
+		/// <param name="lang"></param>
 		private void ChangeLangue(string lang)
 		{
 			foreach (Control c in this.Controls)
@@ -443,7 +497,13 @@ namespace CreaBloc2
 			}
 		}
 
-
+		/// <summary>
+		/// Fonction appelé selon le choix de la langue
+		/// ici l'anglais
+		/// REDEMARAGE REQUIS
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void englishToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (MessageBox.Show("Do you want to change the language to english ?\r\n \r\nVoulez-vous changer la langue en anglais ?", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
@@ -467,6 +527,13 @@ namespace CreaBloc2
 			}
 		}
 
+		/// <summary>
+		/// Fonction appelé selon le choix de la langue
+		/// ici le français
+		/// REDEMARAGE REQUIS
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void françaisToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (MessageBox.Show("Do you want to change the language to french ?\r\n \r\nVoulez-vous changer la langue en français ?", " Creabloc2 ", MessageBoxButtons.YesNo, MessageBoxIcon.None, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
@@ -491,7 +558,14 @@ namespace CreaBloc2
 		//--------CHANGEMENT DOSSIER--------//
 
 
-		//Changement de l'emplacement des blocs unitaires
+		/// <summary>
+		/// Changement de l'emplacement des blocs unitaires
+		/// Ouvre une pop-up de selection de dossier
+		/// et sauvegarde le chemin dans les paramètres de l'application
+		/// REDEMARRAGE REQUIS
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void blocUnitaireToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			//ouvre une fenetre de selection de dossier
@@ -519,7 +593,14 @@ namespace CreaBloc2
 		}
 
 
-		//Changement du l'emplacement de sauvegarde des blocs 
+		/// <summary>
+		/// Changement du l'emplacement de sauvegarde des blocs 
+		/// Ouvre une pop-up de selection de dossier
+		/// et sauvegarde le chemin dans les paramètres de l'application
+		/// REDEMARAGE REQUIS
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void blocFinalToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 

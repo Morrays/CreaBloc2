@@ -73,7 +73,6 @@ namespace CreaBloc2
             this.elemBlocTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.elemBlocTableAdapter();
             this.composantsTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.ComposantsTableAdapter();
             this.elemBlocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataBloc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -336,49 +335,10 @@ namespace CreaBloc2
             this.elemBlocBindingSource.DataMember = "elemBloc";
             this.elemBlocBindingSource.DataSource = this.dBBlocsDataSet1;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            resources.GetString("comboBox1.Items"),
-            resources.GetString("comboBox1.Items1"),
-            resources.GetString("comboBox1.Items2"),
-            resources.GetString("comboBox1.Items3"),
-            resources.GetString("comboBox1.Items4"),
-            resources.GetString("comboBox1.Items5"),
-            resources.GetString("comboBox1.Items6"),
-            resources.GetString("comboBox1.Items7"),
-            resources.GetString("comboBox1.Items8"),
-            resources.GetString("comboBox1.Items9"),
-            resources.GetString("comboBox1.Items10"),
-            resources.GetString("comboBox1.Items11"),
-            resources.GetString("comboBox1.Items12"),
-            resources.GetString("comboBox1.Items13"),
-            resources.GetString("comboBox1.Items14"),
-            resources.GetString("comboBox1.Items15"),
-            resources.GetString("comboBox1.Items16"),
-            resources.GetString("comboBox1.Items17"),
-            resources.GetString("comboBox1.Items18"),
-            resources.GetString("comboBox1.Items19"),
-            resources.GetString("comboBox1.Items20"),
-            resources.GetString("comboBox1.Items21"),
-            resources.GetString("comboBox1.Items22"),
-            resources.GetString("comboBox1.Items23"),
-            resources.GetString("comboBox1.Items24"),
-            resources.GetString("comboBox1.Items25"),
-            resources.GetString("comboBox1.Items26"),
-            resources.GetString("comboBox1.Items27"),
-            resources.GetString("comboBox1.Items28"),
-            resources.GetString("comboBox1.Items29"),
-            resources.GetString("comboBox1.Items30")});
-            resources.ApplyResources(this.comboBox1, "comboBox1");
-            this.comboBox1.Name = "comboBox1";
-            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             resources.ApplyResources(this, "$this");
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cbCoffret);
             this.Controls.Add(this.label4);
@@ -457,7 +417,6 @@ namespace CreaBloc2
         private DataGridViewTextBoxColumn position;
         private DataGridViewComboBoxColumn référence;
         private DataGridViewTextBoxColumn Reprère;
-        private ComboBox comboBox1;
     }
 }
 

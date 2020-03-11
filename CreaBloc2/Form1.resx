@@ -145,7 +145,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>16</value>
   </data>
   <data name="button2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -172,7 +172,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>15</value>
   </data>
   <data name="button3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -199,7 +199,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button3.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="button4.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -226,7 +226,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>13</value>
   </data>
   <data name="button5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -253,7 +253,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button5.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>12</value>
   </data>
   <data name="DataBloc.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -301,7 +301,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DataBloc.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>11</value>
   </data>
   <metadata name="composantsBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>270, 95</value>
@@ -328,7 +328,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -400,7 +400,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>17</value>
   </data>
   <metadata name="composantselemBlocBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 95</value>
@@ -424,7 +424,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox2.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="textBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>437, 431</value>
@@ -445,7 +445,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -472,7 +472,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -502,7 +502,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="cbType.Location" type="System.Drawing.Point, System.Drawing">
     <value>181, 28</value>
@@ -523,7 +523,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbType.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="cbGroupe.Location" type="System.Drawing.Point, System.Drawing">
     <value>451, 28</value>
@@ -544,7 +544,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbGroupe.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -571,7 +571,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -598,7 +598,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="cbCoffret.Location" type="System.Drawing.Point, System.Drawing">
     <value>682, 28</value>
@@ -619,7 +619,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbCoffret.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -646,7 +646,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <metadata name="composantsBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 134</value>
@@ -666,120 +666,6 @@
   <metadata name="elemBlocBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>609, 95</value>
   </metadata>
-  <data name="comboBox1.Items" xml:space="preserve">
-    <value>EB TI parallèle</value>
-  </data>
-  <data name="comboBox1.Items1" xml:space="preserve">
-    <value>EB TP Puissance</value>
-  </data>
-  <data name="comboBox1.Items2" xml:space="preserve">
-    <value>EB TP détection</value>
-  </data>
-  <data name="comboBox1.Items3" xml:space="preserve">
-    <value>EB Booster</value>
-  </data>
-  <data name="comboBox1.Items4" xml:space="preserve">
-    <value>EB TI sur neutre</value>
-  </data>
-  <data name="comboBox1.Items5" xml:space="preserve">
-    <value>EB TI sur phase</value>
-  </data>
-  <data name="comboBox1.Items6" xml:space="preserve">
-    <value>EB Rés. Rech</value>
-  </data>
-  <data name="comboBox1.Items7" xml:space="preserve">
-    <value>EB Sondes stator</value>
-  </data>
-  <data name="comboBox1.Items8" xml:space="preserve">
-    <value>EB Sondes palier</value>
-  </data>
-  <data name="comboBox1.Items9" xml:space="preserve">
-    <value>EB Sondes butée</value>
-  </data>
-  <data name="comboBox1.Items10" xml:space="preserve">
-    <value>EB Sondes Contre-butée</value>
-  </data>
-  <data name="comboBox1.Items11" xml:space="preserve">
-    <value>EB Sonde entrée d'air</value>
-  </data>
-  <data name="comboBox1.Items12" xml:space="preserve">
-    <value>EB Sondes sortie d'air</value>
-  </data>
-  <data name="comboBox1.Items13" xml:space="preserve">
-    <value>EB Sondes entrée d'eau</value>
-  </data>
-  <data name="comboBox1.Items14" xml:space="preserve">
-    <value>EB Sondes sortie d'eau</value>
-  </data>
-  <data name="comboBox1.Items15" xml:space="preserve">
-    <value>EB Sondes huile</value>
-  </data>
-  <data name="comboBox1.Items16" xml:space="preserve">
-    <value>EB détection Fuite</value>
-  </data>
-  <data name="comboBox1.Items17" xml:space="preserve">
-    <value>EB dét. vitesse</value>
-  </data>
-  <data name="comboBox1.Items18" xml:space="preserve">
-    <value>EB Frein</value>
-  </data>
-  <data name="comboBox1.Items19" xml:space="preserve">
-    <value>EB Niveau huile</value>
-  </data>
-  <data name="comboBox1.Items20" xml:space="preserve">
-    <value>EB Niveau très haut</value>
-  </data>
-  <data name="comboBox1.Items21" xml:space="preserve">
-    <value>EB dét. vib. côté acc.</value>
-  </data>
-  <data name="comboBox1.Items22" xml:space="preserve">
-    <value>EB centrale lub.</value>
-  </data>
-  <data name="comboBox1.Items23" xml:space="preserve">
-    <value>EB Vérin soul.</value>
-  </data>
-  <data name="comboBox1.Items24" xml:space="preserve">
-    <value>EB Autres</value>
-  </data>
-  <data name="comboBox1.Items25" xml:space="preserve">
-    <value>EB TP Autre.</value>
-  </data>
-  <data name="comboBox1.Items26" xml:space="preserve">
-    <value>EB TI Point Neutre</value>
-  </data>
-  <data name="comboBox1.Items27" xml:space="preserve">
-    <value>EB TP Point Neutre</value>
-  </data>
-  <data name="comboBox1.Items28" xml:space="preserve">
-    <value>EB Contacts auxiliaires</value>
-  </data>
-  <data name="comboBox1.Items29" xml:space="preserve">
-    <value>EB Divers 1 à 10</value>
-  </data>
-  <data name="comboBox1.Items30" xml:space="preserve">
-    <value>EB Sondes stator internes LS</value>
-  </data>
-  <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>347, 457</value>
-  </data>
-  <data name="comboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
-  </data>
-  <data name="comboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;comboBox1.Name" xml:space="preserve">
-    <value>comboBox1</value>
-  </data>
-  <data name="&gt;&gt;comboBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;comboBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
