@@ -14,7 +14,7 @@
       <Value Profile="(Default)">en-US</Value>
     </Setting>
     <Setting Name="blocUnitaire" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\beaudonnelk\Documents\Test winrelais</Value>
+      <Value Profile="(Default)">S:\BE\ELECTRONIQUE\6-Outils\GenS4\Blocs\ComposantsEB</Value>
     </Setting>
     <Setting Name="blocFinale" Type="System.String" Scope="User">
       <Value Profile="(Default)">S:\BE\ELECTRONIQUE\6-Outils\GenS4\Blocs\BlocsBornesAuto</Value>

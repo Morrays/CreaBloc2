@@ -22,23 +22,17 @@ namespace CreaBloc2
 
 		public int i = 0;
 
-		//--------FormLoad--------//
+		//--------FORMLOAD--------//
 		private void Form1_Load(object sender, EventArgs e)
 		{
-
-			// TODO: This line of code loads data into the 'dBBlocsDataSet2.Composants' table. You can move, or remove it, as needed.
-			this.composantsTableAdapter1.Fill(this.dBBlocsDataSet2.Composants);
-
-
-
-			string requete = "select Désignation from TypeBloc";
+			string requete = "select Désignation from TypeBloc order by Désignation";
 			string[] resType = ElemBlocs.requeteSelect(requete);
 			foreach (string type in resType)
 			{
 				cbType.Items.Add(type);
 			}
-
-			string requete2 = "select DescBloc from GroupesBornes";
+			
+			string requete2 = "select DescBloc from GroupesBornes order by DescBloc";
 			string[] resGrp = ElemBlocs.requeteSelect(requete2);
 
 			foreach (string grp in resGrp)
@@ -46,7 +40,7 @@ namespace CreaBloc2
 				cbGroupe.Items.Add(grp);
 			}
 
-			string requete3 = "select Description from TypeCoffret";
+			string requete3 = "select Description from TypeCoffret order by Description";
 			string[] resCof = ElemBlocs.requeteSelect(requete3);
 			foreach (string coffret in resCof)
 			{
@@ -63,7 +57,7 @@ namespace CreaBloc2
 			string fullPath = path + @"\" + dossier;
 			string nomFichier = fullPath + @"\newBloc.xrb";
 
-
+			
 
 			//Ecrit dans le fichier les lignes qui ne changent pas dans tous les blocs
 			try
@@ -79,12 +73,23 @@ namespace CreaBloc2
 
 		//-----------------------//
 
-		//--------Bouton--------//
+		//--------BOUTON--------//
 
 		//Trigger Boutton Insertion de ligne dans le dataGridView
 		private void button1_Click(object sender, EventArgs e)
 		{
-			DataBloc.Rows.Add();
+			//si il y a au moins une ligne et une ligne selectionné ajoute au dessus de la ligne selectionné
+			if ((DataBloc.Rows.Count > 0) && (DataBloc.SelectedRows.Count > 0))
+			{
+				DataBloc.Rows.Insert(DataBloc.SelectedRows[0].Index);
+
+			}
+			// si pas de ligne ou pas de ligne selectionné ajoute a la fin 
+			else
+			{
+				DataBloc.Rows.Add();
+			}
+			
 		}
 
 		//Trigger Boutton Supprimer Ligne dans le dataGridView
@@ -202,13 +207,13 @@ namespace CreaBloc2
 		//-----------------------------//
 
 
-		//--------Datagridview--------//
+		//--------DATAGRIDVIEW--------//
 
 		// Action effectué quand une ligne est ajoutée
 		private void DataBloc_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
 		{
 			//Remplissage comboBox avec prise en compte de l'obsolescence
-			string requete = "select Réferences from Composants where obsolescence = false";
+			string requete = "select Réferences from Composants where obsolescence = false order by Réferences";
 
 			string[] fin = ElemBlocs.requeteSelect(requete);
 
@@ -369,7 +374,7 @@ namespace CreaBloc2
 								}
 							}
 
-							int largeurBloc = ElemBlocs.LargeurBloc(finalPath);
+							double largeurBloc = ((ElemBlocs.LargeurBloc(finalPath)*3.0)/100.0);
 
 
 
@@ -386,12 +391,12 @@ namespace CreaBloc2
 							//requete final
 							if (textBox2.Text == null)
 							{
-								string sqlD = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','', '" + commentaire + "', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
+								string sqlD = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','', '" + commentaire.Replace("'","''") + "', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
 								ElemBlocs.requeteInsert(sqlD);
 							}
 							else if (textBox3.Text == null)
 							{
-								string sqlC = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','" + descrition + "', '', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
+								string sqlC = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','" + descrition.Replace("'", "''") + "', '', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
 								ElemBlocs.requeteInsert(sqlC);
 							}
 							else if (textBox2.Text == null && textBox3.Text == null)
@@ -401,7 +406,7 @@ namespace CreaBloc2
 							}
 							else
 							{
-								string sql = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','" + descrition + "', '" + commentaire + "', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
+								string sql = "Insert Into Generalites (Clé, description, commentaire, Largeur, Coffret, GroupeBorne) Values ('" + nomReference + "','" + descrition.Replace("'", "''") + "', '" + commentaire.Replace("'", "''") + "', '" + largeurBloc + "', '" + cbCoffret.Text.ToString() + "', '" + blocBorne + "');";
 								ElemBlocs.requeteInsert(sql);
 
 							}
@@ -483,7 +488,7 @@ namespace CreaBloc2
 		//------------------------------------//
 
 
-		//--------Changement de dossier--------//
+		//--------CHANGEMENT DOSSIER--------//
 
 
 		//Changement de l'emplacement des blocs unitaires

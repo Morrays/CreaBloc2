@@ -45,9 +45,6 @@ namespace CreaBloc2
             this.position = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.référence = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Reprère = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.composantsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.dBBlocsDataSet2 = new CreaBloc2.DBBlocsDataSet();
-            this.dBBlocsDataSet1 = new CreaBloc2.DBBlocsDataSet();
             this.composantsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button6 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -60,9 +57,6 @@ namespace CreaBloc2
             this.blocUnitaireToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blocFinalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.composantselemBlocBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.elemBlocTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.elemBlocTableAdapter();
-            this.composantsTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.ComposantsTableAdapter();
-            this.elemBlocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,13 +67,20 @@ namespace CreaBloc2
             this.label4 = new System.Windows.Forms.Label();
             this.cbCoffret = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.composantsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dBBlocsDataSet2 = new CreaBloc2.DBBlocsDataSet();
+            this.dBBlocsDataSet1 = new CreaBloc2.DBBlocsDataSet();
+            this.elemBlocTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.elemBlocTableAdapter();
+            this.composantsTableAdapter1 = new CreaBloc2.DBBlocsDataSetTableAdapters.ComposantsTableAdapter();
+            this.elemBlocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataBloc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.composantselemBlocBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.elemBlocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,11 +121,11 @@ namespace CreaBloc2
             // 
             // DataBloc
             // 
-            resources.ApplyResources(this.DataBloc, "DataBloc");
             this.DataBloc.AllowUserToAddRows = false;
             this.DataBloc.AllowUserToDeleteRows = false;
             this.DataBloc.AllowUserToResizeColumns = false;
             this.DataBloc.AllowUserToResizeRows = false;
+            resources.ApplyResources(this.DataBloc, "DataBloc");
             this.DataBloc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -185,21 +186,6 @@ namespace CreaBloc2
             this.Reprère.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Reprère.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // composantsBindingSource1
-            // 
-            this.composantsBindingSource1.DataMember = "Composants";
-            this.composantsBindingSource1.DataSource = this.dBBlocsDataSet2;
-            // 
-            // dBBlocsDataSet2
-            // 
-            this.dBBlocsDataSet2.DataSetName = "DBBlocsDataSet";
-            this.dBBlocsDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dBBlocsDataSet1
-            // 
-            this.dBBlocsDataSet1.DataSetName = "DBBlocsDataSet";
-            this.dBBlocsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // button6
             // 
             resources.ApplyResources(this.button6, "button6");
@@ -210,75 +196,61 @@ namespace CreaBloc2
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            resources.ApplyResources(this.openFileDialog1, "openFileDialog1");
             // 
             // menuStrip1
             // 
-            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.languageToolStripMenuItem,
             this.cheminToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // languageToolStripMenuItem
             // 
-            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             this.languageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.englishToolStripMenuItem,
             this.françaisToolStripMenuItem});
             this.languageToolStripMenuItem.Name = "languageToolStripMenuItem";
+            resources.ApplyResources(this.languageToolStripMenuItem, "languageToolStripMenuItem");
             // 
             // englishToolStripMenuItem
             // 
-            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
             this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
             this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
             // 
             // françaisToolStripMenuItem
             // 
-            resources.ApplyResources(this.françaisToolStripMenuItem, "françaisToolStripMenuItem");
             this.françaisToolStripMenuItem.Name = "françaisToolStripMenuItem";
+            resources.ApplyResources(this.françaisToolStripMenuItem, "françaisToolStripMenuItem");
             this.françaisToolStripMenuItem.Click += new System.EventHandler(this.françaisToolStripMenuItem_Click);
             // 
             // cheminToolStripMenuItem
             // 
-            resources.ApplyResources(this.cheminToolStripMenuItem, "cheminToolStripMenuItem");
             this.cheminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.blocUnitaireToolStripMenuItem,
             this.blocFinalToolStripMenuItem});
             this.cheminToolStripMenuItem.Name = "cheminToolStripMenuItem";
+            resources.ApplyResources(this.cheminToolStripMenuItem, "cheminToolStripMenuItem");
             // 
             // blocUnitaireToolStripMenuItem
             // 
-            resources.ApplyResources(this.blocUnitaireToolStripMenuItem, "blocUnitaireToolStripMenuItem");
             this.blocUnitaireToolStripMenuItem.Name = "blocUnitaireToolStripMenuItem";
+            resources.ApplyResources(this.blocUnitaireToolStripMenuItem, "blocUnitaireToolStripMenuItem");
             this.blocUnitaireToolStripMenuItem.Click += new System.EventHandler(this.blocUnitaireToolStripMenuItem_Click);
             // 
             // blocFinalToolStripMenuItem
             // 
-            resources.ApplyResources(this.blocFinalToolStripMenuItem, "blocFinalToolStripMenuItem");
             this.blocFinalToolStripMenuItem.Name = "blocFinalToolStripMenuItem";
+            resources.ApplyResources(this.blocFinalToolStripMenuItem, "blocFinalToolStripMenuItem");
             this.blocFinalToolStripMenuItem.Click += new System.EventHandler(this.blocFinalToolStripMenuItem_Click);
-            // 
-            // elemBlocTableAdapter1
-            // 
-            this.elemBlocTableAdapter1.ClearBeforeFill = true;
-            // 
-            // composantsTableAdapter1
-            // 
-            this.composantsTableAdapter1.ClearBeforeFill = true;
-            // 
-            // elemBlocBindingSource
-            // 
-            this.elemBlocBindingSource.DataMember = "elemBloc";
-            this.elemBlocBindingSource.DataSource = this.dBBlocsDataSet1;
             // 
             // textBox2
             // 
@@ -302,16 +274,16 @@ namespace CreaBloc2
             // 
             // cbType
             // 
-            resources.ApplyResources(this.cbType, "cbType");
             this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbType.FormattingEnabled = true;
+            resources.ApplyResources(this.cbType, "cbType");
             this.cbType.Name = "cbType";
             // 
             // cbGroupe
             // 
-            resources.ApplyResources(this.cbGroupe, "cbGroupe");
             this.cbGroupe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGroupe.FormattingEnabled = true;
+            resources.ApplyResources(this.cbGroupe, "cbGroupe");
             this.cbGroupe.Name = "cbGroupe";
             // 
             // label1
@@ -326,9 +298,9 @@ namespace CreaBloc2
             // 
             // cbCoffret
             // 
-            resources.ApplyResources(this.cbCoffret, "cbCoffret");
             this.cbCoffret.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCoffret.FormattingEnabled = true;
+            resources.ApplyResources(this.cbCoffret, "cbCoffret");
             this.cbCoffret.Name = "cbCoffret";
             // 
             // label5
@@ -336,10 +308,77 @@ namespace CreaBloc2
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
+            // composantsBindingSource1
+            // 
+            this.composantsBindingSource1.DataMember = "Composants";
+            this.composantsBindingSource1.DataSource = this.dBBlocsDataSet2;
+            // 
+            // dBBlocsDataSet2
+            // 
+            this.dBBlocsDataSet2.DataSetName = "DBBlocsDataSet";
+            this.dBBlocsDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dBBlocsDataSet1
+            // 
+            this.dBBlocsDataSet1.DataSetName = "DBBlocsDataSet";
+            this.dBBlocsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // elemBlocTableAdapter1
+            // 
+            this.elemBlocTableAdapter1.ClearBeforeFill = true;
+            // 
+            // composantsTableAdapter1
+            // 
+            this.composantsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // elemBlocBindingSource
+            // 
+            this.elemBlocBindingSource.DataMember = "elemBloc";
+            this.elemBlocBindingSource.DataSource = this.dBBlocsDataSet1;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            resources.GetString("comboBox1.Items"),
+            resources.GetString("comboBox1.Items1"),
+            resources.GetString("comboBox1.Items2"),
+            resources.GetString("comboBox1.Items3"),
+            resources.GetString("comboBox1.Items4"),
+            resources.GetString("comboBox1.Items5"),
+            resources.GetString("comboBox1.Items6"),
+            resources.GetString("comboBox1.Items7"),
+            resources.GetString("comboBox1.Items8"),
+            resources.GetString("comboBox1.Items9"),
+            resources.GetString("comboBox1.Items10"),
+            resources.GetString("comboBox1.Items11"),
+            resources.GetString("comboBox1.Items12"),
+            resources.GetString("comboBox1.Items13"),
+            resources.GetString("comboBox1.Items14"),
+            resources.GetString("comboBox1.Items15"),
+            resources.GetString("comboBox1.Items16"),
+            resources.GetString("comboBox1.Items17"),
+            resources.GetString("comboBox1.Items18"),
+            resources.GetString("comboBox1.Items19"),
+            resources.GetString("comboBox1.Items20"),
+            resources.GetString("comboBox1.Items21"),
+            resources.GetString("comboBox1.Items22"),
+            resources.GetString("comboBox1.Items23"),
+            resources.GetString("comboBox1.Items24"),
+            resources.GetString("comboBox1.Items25"),
+            resources.GetString("comboBox1.Items26"),
+            resources.GetString("comboBox1.Items27"),
+            resources.GetString("comboBox1.Items28"),
+            resources.GetString("comboBox1.Items29"),
+            resources.GetString("comboBox1.Items30")});
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            // 
             // Form1
             // 
-            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            resources.ApplyResources(this, "$this");
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cbCoffret);
             this.Controls.Add(this.label4);
@@ -364,13 +403,13 @@ namespace CreaBloc2
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataBloc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.composantselemBlocBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.composantsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBBlocsDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.elemBlocBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -409,15 +448,16 @@ namespace CreaBloc2
         private TextBox textBox3;
         private Label label2;
         private Label label3;
-        private DataGridViewTextBoxColumn position;
-        private DataGridViewComboBoxColumn référence;
-        private DataGridViewTextBoxColumn Reprère;
         private ComboBox cbType;
         private ComboBox cbGroupe;
         private Label label1;
         private Label label4;
         private ComboBox cbCoffret;
         private Label label5;
+        private DataGridViewTextBoxColumn position;
+        private DataGridViewComboBoxColumn référence;
+        private DataGridViewTextBoxColumn Reprère;
+        private ComboBox comboBox1;
     }
 }
 

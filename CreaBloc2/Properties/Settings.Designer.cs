@@ -48,7 +48,7 @@ namespace CreaBloc2.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\beaudonnelk\\Documents\\Test winrelais")]
+        [global::System.Configuration.DefaultSettingValueAttribute("S:\\BE\\ELECTRONIQUE\\6-Outils\\GenS4\\Blocs\\ComposantsEB")]
         public string blocUnitaire {
             get {
                 return ((string)(this["blocUnitaire"]));

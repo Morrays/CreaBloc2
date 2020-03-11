@@ -336,7 +336,7 @@ namespace CreaBloc2
 
 
                                 }
-                                else { refe = 2; }                               
+                                else { refe = 2; }
                             }
                         }
 
@@ -507,7 +507,7 @@ namespace CreaBloc2
 
                 using (FileStream fs = File.Create(path))
                 {
-
+                   
                 }
 
                 using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.GetEncoding(1252)))
@@ -532,7 +532,7 @@ namespace CreaBloc2
             OleDbConnection cnn;
             OleDbCommand cmd;
 
-            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\beaudonnelk\Documents\DBBlocs.accdb;"))
+            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=S:\BE\ELECTRONIQUE\Echanges KBEAUDONNEL - JF PAILLOU\DBBlocs.accdb;"))
             {
                 using (cmd = new OleDbCommand(requestSQL, cnn))
                 {
@@ -551,9 +551,9 @@ namespace CreaBloc2
             OleDbConnection cnn;
             OleDbCommand cmd;
             DataTable result = new DataTable();
-            
 
-            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\beaudonnelk\Documents\DBBlocs.accdb;"))
+
+            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=S:\BE\ELECTRONIQUE\Echanges KBEAUDONNEL - JF PAILLOU\DBBlocs.accdb;"))
             {
                 using (cmd = new OleDbCommand(requete, cnn))
                 {
@@ -562,6 +562,7 @@ namespace CreaBloc2
                         dataAdapter.Fill(result);
                     }
                 }
+
             }
             int columnIndex = 0;
             string[] array = new string[result.Rows.Count];
@@ -580,7 +581,7 @@ namespace CreaBloc2
             OleDbCommand cmd;
             DataTable dt = new DataTable();
 
-            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=C:\Users\beaudonnelk\Documents\DBBlocs.accdb;"))
+            using (cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Data source=S:\BE\ELECTRONIQUE\Echanges KBEAUDONNEL - JF PAILLOU\DBBlocs.accdb;"))
             {
                 using (cmd = new OleDbCommand(requete, cnn))
                 {
@@ -605,7 +606,7 @@ namespace CreaBloc2
             }
             return builder.ToString();
         }
-    }
+    }  
 }
 
             
