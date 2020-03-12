@@ -13,12 +13,12 @@ namespace CreaBloc2
     class ElemBlocs
     {
 
-
+        
         /// <summary>
-        /// Fonction calcule de largeur d'un bloc
+        /// Fonction qui calcule largeur d'un bloc
         /// a partir d'un fichier
         /// </summary>
-        /// <param name="chemin"></param>
+        /// <param name="chemin">Chemin de l'empalcement du fichier </param>
         /// <returns> Retourne la largeur d'un bloc</returns>
         public static int LargeurBloc(String chemin)
         {
@@ -104,10 +104,10 @@ namespace CreaBloc2
         /// <summary>
         /// Ajoute la largeur du bloc présedent au bloc sélectionné
         /// </summary>
-        /// <param name="largeur"></param>
-        /// <param name="selectedBloc"></param>
-        /// <param name="repere"></param>
-        /// <param name="numSymbole"></param>
+        /// <param name="largeur"> Largeur du bloc  </param>
+        /// <param name="selectedBloc"> Nouveau bloc a insérer</param>
+        /// <param name="repere"> Repère indiqué par l'utilisateur dans la 3eme colone </param>
+        /// <param name="numSymbole">Nombre de symbole total (Nombre de bloc unitaire) </param>
         /// <returns>Retourne un array de string comportant les lignes 
         /// avec l'ajout de la largeur aux coordonnées</returns>
         public static string[] addLargeur(int largeur, string selectedBloc, string repere, int numSymbole)
@@ -408,10 +408,10 @@ namespace CreaBloc2
         /// <summary>
         /// Fonction qui ajoute les blocs unitaire supplémentaire (pas le premier bloc)
         /// </summary>
-        /// <param name="pathTemp"></param>
-        /// <param name="selectedBloc"></param>
-        /// <param name="repereChoix"></param>
-        /// <param name="numSymbole"></param>
+        /// <param name="pathTemp">Emplecement fichier temporaire</param>
+        /// <param name="selectedBloc">Emplacement du bloc qui va être ajouté </param>
+        /// <param name="repereChoix">Repère choisie par l'utilisateur (3eme colone)</param>
+        /// <param name="numSymbole">Ajoute le numéro du bloc ( exemple: si 3eme bloc alors numSymbole = 2 )</param>
         public static void addBlock(string pathTemp, string selectedBloc, string repereChoix, int numSymbole)
         {
             int largeur = ElemBlocs.LargeurBloc(pathTemp);
@@ -433,12 +433,11 @@ namespace CreaBloc2
 
         /// <summary>
         /// Fonction qui ajoute le premier bloc unitaire
-        /// car pas de changement de coordonnée
         /// </summary>
-        /// <param name="pathTemp"></param>
-        /// <param name="selectedBloc"></param>
+        /// <param name="pathTemp">Emplacement du fichier temporaire</param>
+        /// <param name="selectedBloc">Emplacement du bloc qui va être ajouté</param>
         /// <param name="nbrSymboles"></param>
-        /// <param name="repereBloc"></param>
+        /// <param name="repereBloc"> Repère indiqué par l'utilisateur dans la 3eme colone selon le bloc</param>
         public static void addFirstBloc(string pathTemp, string selectedBloc, int nbrSymboles, string repereBloc)
         {
             //Compte le nombre de ligne du fiche de base
@@ -469,12 +468,12 @@ namespace CreaBloc2
         }
 
         /// <summary>
-        /// Fonction qui prend en paramètre le chemin du bloc selectionné, le nombre totale de symbole (de bloc unitaires)
-        /// et le repère du premier bloc (définie par l'utilisateur dans le datagridview)
+        /// Fonction qui permet de copier les éléments du premier bloc dans un array de string avec changement
+        /// du nombre de symbole et le repère du bloc, ici toujours 0 car premier bloc
         /// </summary>
-        /// <param name="path"></param>
-        /// <param name="nbrSymbole"></param>
-        /// <param name="unRepereBloc"></param>
+        /// <param name="path">le chemin du bloc selectionné</param>
+        /// <param name="nbrSymbole">nombre totale de symbole (de bloc unitaires)</param>
+        /// <param name="unRepereBloc">Repère du premier bloc</param>
         /// <returns>Retourne un array de string comportant toutes les lignes du fichier avec les changemaent au 
         /// niveau du repère et du nombre de symbole</returns>
         public static string[] texteCopie(string path, int nbrSymbole, string unRepereBloc)
@@ -534,7 +533,7 @@ namespace CreaBloc2
         /// Fonction qui permet d'ajouter les lignes 
         /// qui ne changent jamais au début du fichier
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">Emplacement du fichier temporaire </param>
         public static void addTexteNoChangement(string path)
         {
             if (File.Exists(path))
@@ -569,7 +568,7 @@ namespace CreaBloc2
         /// fonction requête Insert database
         /// Insert dans la DB selon la requete en paramètre
         /// </summary>
-        /// <param name="requestSQL"></param>
+        /// <param name="requestSQL"> Requete SQL</param>
         public static void requeteInsert(string requestSQL)
         {
             OleDbConnection cnn;
@@ -589,9 +588,9 @@ namespace CreaBloc2
         }
 
         /// <summary>
-        /// requete select avec une seule colone en return
+        /// Requete select avec une seule colone en return
         /// </summary>
-        /// <param name="requete"></param>
+        /// <param name="requete">Requete SQL</param>
         /// <returns></returns>
         public static string[] requeteSelect(string requete)
         {
@@ -622,9 +621,9 @@ namespace CreaBloc2
         }
 
         /// <summary>
-        /// requete select avec plusieurs cologne en return
+        /// Requete select avec plusieurs colones en return
         /// </summary>
-        /// <param name="requete"></param>
+        /// <param name="requete">Requete SQL</param>
         /// <returns>Return une datatable </returns>
         public static DataTable requeteSelectMult(string requete)
         {
@@ -649,7 +648,7 @@ namespace CreaBloc2
         /// <summary>
         /// Fonction qui permet de convertir un array de string en string
         /// </summary>
-        /// <param name="array"></param>
+        /// <param name="array">Un array de string a convertir</param>
         /// <returns>return un string contenant tous les string contenues dans l'array</returns>
         public static string ConvertStringArrayToString(string[] array)
         {

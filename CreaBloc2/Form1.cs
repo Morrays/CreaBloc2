@@ -11,18 +11,26 @@ using System.Windows.Forms;
 
 namespace CreaBloc2
 {
+	
 	public partial class Form1 : Form
-	{																	
-		public string language = Properties.Settings.Default.langue;  // string public pour lire la langue sauvegarder en paramètre 
+	{
+		/// <summary>
+		/// string public pour lire la langue sauvegarder en paramètre 
+		/// </summary>
+		public string language = Properties.Settings.Default.langue;
+
+		/// <summary>
+		/// Formulaire Princial
+		/// </summary>
 		public Form1()
 		{
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(language); //Launch the Form with the default/selected language
 			InitializeComponent();
 		}
 
-		public int i = 0;
+		
 
-		//--------FORMLOAD--------//
+		
 		/// <summary>
 		/// Action effectué au chargement du formulaire
 		/// </summary>
@@ -76,9 +84,6 @@ namespace CreaBloc2
 			}
 		}
 
-		//-----------------------//
-
-		//--------BOUTON--------//
 
 		/// <summary>
 		/// Trigger Boutton Insertion de ligne dans le dataGridView
@@ -87,13 +92,13 @@ namespace CreaBloc2
 		/// <param name="e"></param>
 		private void button1_Click(object sender, EventArgs e)
 		{
-			//si il y a au moins une ligne et une ligne selectionné ajoute au dessus de la ligne selectionné
+			//si il y a au moins une ligne et une ligne est selectionné => ajoute au dessus de la ligne selectionné
 			if ((DataBloc.Rows.Count > 0) && (DataBloc.SelectedRows.Count > 0))
 			{
 				DataBloc.Rows.Insert(DataBloc.SelectedRows[0].Index);
 
 			}
-			// si pas de ligne ou pas de ligne selectionné ajoute a la fin 
+			// si 0 ligne existante ou pas de ligne selectionné => ajoute a la fin 
 			else
 			{
 				DataBloc.Rows.Add();
@@ -172,6 +177,7 @@ namespace CreaBloc2
 			DialogResult result = openFileDialog1.ShowDialog(); // Ouvre la selection de fichier
 			if (result == DialogResult.OK)
 			{
+
 				//récupère le chemin du fichier selectionné
 				string file = openFileDialog1.FileName;
 				string[] file1 = file.Split('\\');
@@ -234,11 +240,7 @@ namespace CreaBloc2
 				}
 			}
 		}
-
-		//-----------------------------//
-
-
-		//--------DATAGRIDVIEW--------//
+	
 
 		/// <summary>
 		/// Action effectué quand une ligne est ajoutée
@@ -272,7 +274,7 @@ namespace CreaBloc2
 			///////////////////////
 
 			//Position automatique
-			i = 0;
+			int i = 0;
 			while (i < DataBloc.Rows.Count)
 			{
 				DataBloc.Rows[i].Cells[0].Value = i + 1;
@@ -288,7 +290,7 @@ namespace CreaBloc2
 		/// <param name="e"></param>
 		private void DataBloc_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
 		{
-			i = 0;
+			 int i = 0;
 			while (i < DataBloc.Rows.Count)
 			{
 				DataBloc.Rows[i].Cells[0].Value = i + 1;
@@ -297,10 +299,6 @@ namespace CreaBloc2
 			}
 		}
 
-		//------------------------------//
-
-
-		//--------AJOUT DE BLOC--------//
 
 		/// <summary>
 		/// Enregistrement du bloc 
@@ -477,12 +475,6 @@ namespace CreaBloc2
 
 
 
-
-		//----------------------------//
-
-
-		//--------MULTILANGUE--------//
-
 		/// <summary>
 		/// Fonction appelé pour changer la langue
 		/// avec sauvegarde dans les paramètres généraux
@@ -514,8 +506,6 @@ namespace CreaBloc2
 					language = "en-US";
 					englishToolStripMenuItem.Checked = true;
 					françaisToolStripMenuItem.Checked = false;
-
-
 
 					//Sauvegarde le choix de l'utilisateur dans les paramètres
 					Properties.Settings.Default.langue = "en-US";
@@ -552,11 +542,6 @@ namespace CreaBloc2
 				}
 			}
 		}
-		//------------------------------------//
-
-
-		//--------CHANGEMENT DOSSIER--------//
-
 
 		/// <summary>
 		/// Changement de l'emplacement des blocs unitaires
@@ -623,7 +608,6 @@ namespace CreaBloc2
 				}
 			}
 		}
-		//------------------------------//
 	}
 }
 
